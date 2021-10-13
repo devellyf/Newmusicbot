@@ -72,9 +72,7 @@ async def updatebot(_, message: Message):
         repo.heads.main.set_tracking_branch(origin.refs.main)
         repo.heads.main.checkout(True)
     if repo.active_branch.name != U_BRANCH:
-        return await msg.edit(
-            f"**sorry, you are using costum branch named:** `{repo.active_branch.name}`!\n\nchange to `{U_BRANCH}` branch to continue update!"
-        )
+        return await msg.edit(f"**sorry, you are using costum branch named:** `{repo.active_branch.name}`!\n\nchange to `{U_BRANCH}` branch to continue update!")
     try:
         repo.create_remote("upstream", REPO_)
     except BaseException:
