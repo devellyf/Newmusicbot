@@ -28,6 +28,7 @@ from config import (
     aiohttpsession,
     BOT_NAME as bn,
 )
+from helpers.chattitle import CHAT_TITLE
 from helpers.filters import command, other_filters
 from helpers.decorators import authorized_users_only
 from helpers.gets import get_file_name, get_url
@@ -87,7 +88,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def generate_cover(title, thumbnail):
+async def generate_cover(title, thumbnail, ctitle):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
@@ -104,7 +105,7 @@ async def generate_cover(title, thumbnail):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/WigendaTypewrite.ttf", 57)
-    draw.text((30, 535), f"Playing here", (0, 0, 0), font=font)
+    draw.text((30, 535), f"Playing on {ctitle[:10]}", (0, 0, 0), font=font)
     font = ImageFont.truetype("etc/Roboto-Medium.ttf", 75)
     draw.text((30, 615),
         f"{title[:20]} ...",
@@ -543,7 +544,7 @@ async def play(_, message: Message):
         duration = round(audio.duration / 60)
         views = "Locally added"
         requested_by = message.from_user.first_name
-        await generate_cover(title, thumbnail)
+        await generate_cover(title, thumbnail, ctitle)
         file_path = await converter.convert(
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name))
@@ -560,6 +561,8 @@ async def play(_, message: Message):
             title = results[0]["title"]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"{title}.jpg"
+            ctitle = message.chat.title
+            ctitle = await CHAT_TITLE(ctitle)
             thumb = requests.get(thumbnail, allow_redirects=True)
             open(thumb_name, "wb").write(thumb.content)
             duration = results[0]["duration"]
@@ -582,7 +585,7 @@ async def play(_, message: Message):
             ]
         )
         requested_by = message.from_user.first_name
-        await generate_cover(title, thumbnail)
+        await generate_cover(title, thumbnail, ctitle)
         file_path = await converter.convert(youtube.download(url))        
     else:
         query = ""
@@ -633,6 +636,8 @@ async def play(_, message: Message):
                 title = results[0]["title"]
                 thumbnail = results[0]["thumbnails"][0]
                 thumb_name = f"{title}.jpg"
+                ctitle = message.chat.title
+                ctitle = await CHAT_TITLE(ctitle)
                 thumb = requests.get(thumbnail, allow_redirects=True)
                 open(thumb_name, "wb").write(thumb.content)
                 duration = results[0]["duration"]
@@ -655,7 +660,7 @@ async def play(_, message: Message):
             ]
         )
             requested_by = message.from_user.first_name
-            await generate_cover(title, thumbnail)
+            await generate_cover(title, thumbnail, ctitle)
             file_path = await converter.convert(youtube.download(url))   
     chat_id = get_chat_id(message.chat)
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -735,6 +740,8 @@ async def lol_cb(b, cb):
         pass
     try:
         thumb_name = f"{title}.jpg"
+        ctitle = cb.message.chat.title
+        ctitle = await CHAT_TITLE(ctitle)
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
     except Exception as e:
@@ -751,7 +758,7 @@ async def lol_cb(b, cb):
             ]
         )
     requested_by = useer_name
-    await generate_cover(title, thumbnail)
+    await generate_cover(title, thumbnail, ctitle)
     file_path = await converter.convert(youtube.download(url))  
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
@@ -873,6 +880,8 @@ async def ytplay(_, message: Message):
         title = results[0]["title"]
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f"thumb{title}.jpg"
+        ctitle = message.chat.title
+        ctitle = await CHAT_TITLE(ctitle)
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
         duration = results[0]["duration"]
@@ -896,7 +905,7 @@ async def ytplay(_, message: Message):
             ]
         )
     requested_by = message.from_user.first_name
-    await generate_cover(title, thumbnail)
+    await generate_cover(title, thumbnail, ctitle)
     file_path = await converter.convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
     if chat_id in callsmusic.pytgcalls.active_calls:
