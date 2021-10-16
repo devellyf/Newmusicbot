@@ -24,7 +24,6 @@ from config import (
     BOT_USERNAME,
     UPDATES_CHANNEL,
     GROUP_SUPPORT,
-    UB_STICKER as ubs,
     ASSISTANT_NAME,
     aiohttpsession,
     BOT_NAME as bn,
@@ -480,9 +479,6 @@ async def play(_, message: Message):
                     await USER.send_message(
                         message.chat.id, "🤖: i'm joined to this group for playing music on voice chat"
                     )
-                    await USER.send_sticker(
-                        message.chat.id, f"{ubs}"
-                    )
                     await lel.edit(
                         "<b>💡 helper userbot joined your chat</b>",
                     )
@@ -846,9 +842,6 @@ async def ytplay(_, message: Message):
                     await USER.join_chat(invitelink)
                     await USER.send_message(
                         message.chat.id, "🤖: assistant telah bergabung ke grup untuk memutar musik"
-                    )
-                    await USER.send_sticker(
-                        message.chat.id, f"{ubs}"
                     )
                     await lel.edit(
                         "<b>💡 Helper userbot joined!\n\n• Jika terjadi masalah, laporkan ke @kenbotsupport</b>",
