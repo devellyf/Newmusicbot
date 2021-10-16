@@ -24,7 +24,7 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
 from callsmusic.callsmusic import client as USER
-from config import BOT_USERNAME, SUDO_USERS, UB_STICKER as ubs
+from config import BOT_USERNAME, SUDO_USERS
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command
 
@@ -38,7 +38,7 @@ async def addchannel(client, message):
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text("<b>promote me as admin first !</b>")
-        await message.reply_sticker(f"{ubs}")
+        await message.reply_sticker("CAACAgUAAx0CRJlrWAABAkcSYWoVTyDAC0f6A28bYQbTufgQEdQAAlYDAAK1iPFWodSjgGfzQs8hBA")
         return
     try:
         user = await USER.get_me()
@@ -47,7 +47,7 @@ async def addchannel(client, message):
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "🤖: i'm joined here for playing music on voice chat")
-        await USER.send_sticker(message.chat.id, f"{ubs}")
+        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CRJlrWAABAkcSYWoVTyDAC0f6A28bYQbTufgQEdQAAlYDAAK1iPFWodSjgGfzQs8hBA")
     except UserAlreadyParticipant:
         await message.reply_text(f"<b>✅ userbot already joined chat</b>")
     except Exception as e:
