@@ -27,7 +27,6 @@ UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "KennedyProject")
 OWNER_NAME = getenv("OWNER_NAME", "xgothboi") # isi dengan username kamu tanpa simbol @
 ALIVE_EMOJI = getenv("ALIVE_EMOJI", "🌻")
 PMPERMIT = getenv("PMPERMIT", "ENABLE")
-UB_STICKER = getenv("UB_STICKER, "CAACAgUAAx0CRJlrWAABAkcSYWoVTyDAC0f6A28bYQbTufgQEdQAAlYDAAK1iPFWodSjgGfzQs8hBA")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
