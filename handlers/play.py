@@ -21,11 +21,10 @@ from downloaders import youtube
 from config import (
     que,
     DURATION_LIMIT,
-    BOT_USERNAME,
+    BOT_USERNAME as bu,
     UPDATES_CHANNEL,
-    GROUP_SUPPORT,
+    GROUP_SUPPORT as gs,
     ASSISTANT_NAME,
-    aiohttpsession,
     BOT_NAME as bn,
 )
 from helpers.chattitle import CHAT_TITLE
@@ -118,7 +117,7 @@ async def generate_cover(title, thumbnail, ctitle):
 
 
 
-@Client.on_message(command(["playlist", f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(command(["playlist", f"playlist@{bu}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -183,7 +182,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(command(["player", f"player@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(command(["player", f"player@{bu}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     playing = None
@@ -198,11 +197,11 @@ async def settings(client, message):
         else:
             await message.reply(stats, reply_markup=r_ply("play"))
     else:
-        await message.reply("😕 **voice chat not found**\n\n» please turn on the voice chat first")
+        await message.reply("❌ **Nothing is currency playing**")
 
 
 @Client.on_message(
-    command(["musicplayer", f"musicplayer@{BOT_USERNAME}"]) & ~filters.edited & ~filters.bot & ~filters.private
+    command(["musicplayer", f"musicplayer@{bu}"]) & ~filters.edited & ~filters.bot & ~filters.private
 )
 @authorized_users_only
 async def hfmm(_, message):
@@ -440,14 +439,13 @@ async def m_cb(b, cb):
             await cb.answer("assistant is not connected to voice chat !", show_alert=True)
 
 
-@Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("😕 **Musicplayer is Disable!**\n\n» Ask admin for Enable the Musicplayer for this group.")
         return
-    lel = await message.reply("🔎 **Finding song**")
+    lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -477,7 +475,7 @@ async def play(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "🤖: i'm joined to this group for playing music on voice chat"
+                        message.chat.id, "**__I'm joined to this group for playing music on voice chat__**"
                     )
                     await lel.edit(
                         "<b>💡 helper userbot joined your chat</b>",
@@ -500,14 +498,21 @@ async def play(_, message: Message):
         return
     text_links=None
     if message.reply_to_message:
-        if message.reply_to_message.audio or message.reply_to_message.voice:
+        if message.reply_to_message.audio.title:
             pass
         entities = []
-        toxt = message.reply_to_message.text or message.reply_to_message.caption
-        if message.reply_to_message.entities:
-            entities = message.reply_to_message.entities + entities
-        elif message.reply_to_message.caption_entities:
-            entities = message.reply_to_message.entities + entities
+        if message.entities:
+            entities += entities
+        elif message.caption_entities:
+            entities += message.caption_entities
+        if message.reply_to_message:
+            text = message.reply_to_message.text \
+                or message.reply_to_message.caption
+            if message.reply_to_message.entities:
+                entities = message.reply_to_message.entities + entities
+        else:
+            text = message.text or message.caption
+
         urls = [entity for entity in entities if entity.type == 'url']
         text_links = [
             entity for entity in entities if entity.type == 'text_link'
@@ -532,15 +537,17 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="closed")
-                ],
+                    InlineKeyboardButton("🎼 Support ", url=f"https://t.me/{gs}"),
+                    InlineKeyboardButton("🗑️ Close ", callback_data="closed"),
+                ]
             ]
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/fa2cdb8a14a26950da711.png"
+        thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
+        ctitle = message.chat.title
+        ctitle = await CHAT_TITLE(ctitle)
         duration = round(audio.duration / 60)
         views = "Locally added"
         requested_by = message.from_user.first_name
@@ -552,7 +559,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🔎 **Finding song**")
+        await lel.edit("🔎 **Searching**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -577,12 +584,12 @@ async def play(_, message: Message):
         dlurl=url
         dlurl=dlurl.replace("youtube","youtubepp")
         keyboard = InlineKeyboardMarkup(
+         [
             [
-                [
-                    InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="closed")
-                ],
+                InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
             ]
+         ]
         )
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
@@ -607,7 +614,7 @@ async def play(_, message: Message):
             while j < 5:
                 toxxt += f"{emojilist[j]} [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f" ├ 💡 Duration - {results[j]['duration']}\n"
-                toxxt += f" └ ⚡ __Powered by [{bn}](https://t.me/{BOT_USERNAME})__\n\n"
+                toxxt += f" └ ⚡ __Powered by [{bn}] AI__\n\n"
                 j += 1            
             keyboard = InlineKeyboardMarkup(
                 [
@@ -650,15 +657,14 @@ async def play(_, message: Message):
                 print(str(e))
                 return
             dlurl=url
-            dlurl=dlurl.replace("youtube","youtubepp")
             keyboard = InlineKeyboardMarkup(
+                 [
             [
-                [
-                    InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="closed")
-                ],
-            ]
-        )
+                InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+            ],
+        ]
+    )
             requested_by = message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
             file_path = await converter.convert(youtube.download(url))   
@@ -667,13 +673,14 @@ async def play(_, message: Message):
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
+        url = f"https://t.me/{gs}"
         r_by = message.from_user
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
+            caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
             reply_markup=keyboard
         )
     else:
@@ -681,6 +688,7 @@ async def play(_, message: Message):
         que[chat_id] = []
         qeue = que.get(chat_id)
         s_name = title
+        url = f"https://t.me/{gs}"
         r_by = message.from_user
         loc = file_path
         appendable = [s_name, r_by, loc]
@@ -750,13 +758,13 @@ async def lol_cb(b, cb):
     dlurl=url
     dlurl=dlurl.replace("youtube", "youtubepp")
     keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="closed")
-                ],
-            ]
-        )
+     [
+        [
+            InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+        ]
+     ]
+    )
     requested_by = useer_name
     await generate_cover(title, thumbnail, ctitle)
     file_path = await converter.convert(youtube.download(url))  
@@ -775,7 +783,7 @@ async def lol_cb(b, cb):
         await b.send_photo(
         chat_id,
         photo="final.png",
-        caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}",
+        caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}\n\n🔢 Track position » `{position}`",
         reply_markup=keyboard,
         )
         if path.exists("final.png"):
@@ -804,13 +812,12 @@ async def lol_cb(b, cb):
             os.remove("final.png")
 
 
-@Client.on_message(command(["ytp", f"ytp@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(command(["ytp", f"ytp@{bu}"]) & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("😕 **Musicplayer is Disable!**\n\n» Ask admin for Enable the Musicplayer for this group.")
         return
-    lel = await message.reply("🔎 **Finding song**")
+    lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -841,7 +848,7 @@ async def ytplay(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "🤖: assistant telah bergabung ke grup untuk memutar musik"
+                        message.chat.id, "**__I'm joined your group for playing music__**"
                     )
                     await lel.edit(
                         "<b>💡 Helper userbot joined!\n\n• Jika terjadi masalah, laporkan ke @kenbotsupport</b>",
@@ -897,13 +904,13 @@ async def ytplay(_, message: Message):
     dlurl=url
     dlurl=dlurl.replace("youtube","youtubepp")
     keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="closed")
-                ],
-            ]
-        )
+     [
+        [
+            InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+        ]
+     ]
+    )
     requested_by = message.from_user.first_name
     await generate_cover(title, thumbnail, ctitle)
     file_path = await converter.convert(youtube.download(url))
@@ -918,7 +925,7 @@ async def ytplay(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}",
+            caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}\n\n🔢 Track position » `{position}`",
                    reply_markup=keyboard,
         )
         os.remove("final.png")
