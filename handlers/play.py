@@ -537,8 +537,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🎼 Support ", url=f"https://t.me/{gs}"),
-                    InlineKeyboardButton("🗑️ Close ", callback_data="closed"),
+                    InlineKeyboardButton("• Support ", url=f"https://t.me/{gs}"),
+                    InlineKeyboardButton("Close •", callback_data="closed"),
                 ]
             ]
         )
@@ -586,8 +586,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
-                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("Close •", callback_data="closed"),
             ]
          ]
         )
@@ -660,8 +660,8 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
-                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("Close •", callback_data="closed"),
             ],
         ]
     )
@@ -760,8 +760,8 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
-            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+            InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("Close •", callback_data="closed"),
         ]
      ]
     )
@@ -906,8 +906,8 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🎼 Support", url=f"https://t.me/{gs}"),
-            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+            InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("Close •", callback_data="closed"),
         ]
      ]
     )
