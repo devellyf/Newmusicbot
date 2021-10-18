@@ -1,3 +1,7 @@
+# Copyright by KennedyProject 2021
+# https://github.com/KennedyProject/KennedyXMusic
+
+
 import traceback
 import asyncio
 from asyncio import QueueEmpty
