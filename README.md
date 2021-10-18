@@ -1,6 +1,6 @@
-<p align="center"><a href="https://t.me/kenbotsupport"><img src="https://telegra.ph/file/2b6036786291fdc0f884f.png" width="340"></a></p>
+<p align="center"><a href="https://t.me/emikosupport"><img src="https://telegra.ph/file/2b6036786291fdc0f884f.png" width="340"></a></p>
 
-### 🎵 Music bot for playing music on telegram voice chat group with extra features.
+<p align="center"><b> KennedyXMusic is a Music bot for playing music on telegram voice chat group with extra features </b></p>
 
 <h3>Requirements</h3>
 
@@ -11,7 +11,7 @@
 
 ### Get STRING_SESSION from here:
 
-[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@KennedyProject/String-Session#main.py)
+[![GenerateString](https://img.shields.io/badge/repl.it-generateString-blue)](https://replit.com/@KennedyProject/String-Session#main.py)
 
 
 ### Commands 
