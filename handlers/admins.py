@@ -29,38 +29,38 @@ async def update_admin(client, message):
 @Client.on_message(command(["pause", f"pause@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
-async def pause(_, message: Message):
+async def pause(client, message):
     chat_id = get_chat_id(message.chat)
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "paused"
     ):
-        await message.reply_text("❌ **Not playing a song!**")
+        await message.reply_text("❌ **nothing is playing**")
     else:
         callsmusic.pytgcalls.pause_stream(chat_id)
-        await message.reply_text("▶️ **Music paused!**\n\n• To resume music use **command » /resume**")
+        await client.send_message(message.chat.id, "▶️ **Music paused!**\n\n• To resume the music playback, use **command » /resume**")
 
 
 @Client.on_message(command(["resume", f"resume@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
-async def resume(_, message: Message):
+async def resume(client, message):
     chat_id = get_chat_id(message.chat)
     if (chat_id not in callsmusic.pytgcalls.active_calls) or (
         callsmusic.pytgcalls.active_calls[chat_id] == "playing"
     ):
-        await message.reply_text("❌ **No music is paused!**")
+        await message.reply_text("❌ **Nothing is paused**")
     else:
         callsmusic.pytgcalls.resume_stream(chat_id)
-        await message.reply_text("⏸ **Music resumed!**\n\n• To pause use **command » /pause**")
+        await client.send_message(message.chat.id, "⏸ **Music resumed!**\n\n• To pause the music playback, use **command » /pause**")
 
 
 @Client.on_message(command(["end", f"end@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
-async def stop(_, message: Message):
+async def stop(client, message):
     chat_id = get_chat_id(message.chat)
     if chat_id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("❌ **Not playing a song!**")
+        await message.reply_text("❌ **nothing is playing**")
     else:
         try:
             queues.clear(chat_id)
@@ -68,22 +68,23 @@ async def stop(_, message: Message):
             pass
 
         callsmusic.pytgcalls.leave_group_call(chat_id)
-        await message.reply_text("✅ The **Userbot disconnected from voice chat**")
+        await client.send_message(message.chat.id, "✅ __The Userbot has disconnected from voice chat__")
 
 
 @Client.on_message(command("skip") & other_filters)
 @errors
 @authorized_users_only
-async def skip(_, message: Message):
+async def skip(client, message):
     global que
     chat_id = get_chat_id(message.chat)
     if chat_id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("❌ **Not playing a song!**")
+        await message.reply_text("❌ **nothing is playing to skip**")
     else:
         queues.task_done(chat_id)
 
         if queues.is_empty(chat_id):
             callsmusic.pytgcalls.leave_group_call(chat_id)
+            await client.send_message(message.chat.id, "__not enough queue, the assistant left the voice chat__")
         else:
             callsmusic.pytgcalls.change_stream(
                 chat_id, queues.get(chat_id)["file"]
@@ -94,4 +95,4 @@ async def skip(_, message: Message):
         skip = qeue.pop(0)
     if not qeue:
         return
-    await message.reply_text(f"⏭️ **__You've skipped to the next song__**")
+    await client.send_message(message.chat.id, f"⏭️ __You've skipped to the next song__")
