@@ -25,8 +25,14 @@ from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
 from helpers.decorators import authorized_users_only
-from config import ALIVE_EMOJI as alv
-from config import BOT_NAME as bn, BOT_IMG, BOT_USERNAME, OWNER_NAME, GROUP_SUPPORT, UPDATES_CHANNEL, ASSISTANT_NAME
+from config import (
+    ALIVE_EMOJI as alv,
+    BOT_NAME as bn,
+    BOT_IMG, BOT_USERNAME, 
+    OWNER_NAME, GROUP_SUPPORT, 
+    UPDATES_CHANNEL, 
+    ASSISTANT_NAME,
+)
 from handlers.play import cb_admin_check
 
 
@@ -332,6 +338,45 @@ async def cbguide(_, query: CallbackQuery):
                 ]
             ]
         )
+    )
+
+
+@Client.on_callback_query(filters.regex("cbhplay"))
+async def cbhplay(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""How to play music on {bn} {alv}
+
+• `/play <query>` - for playing music via youtube
+• `/ytp <query>` - play music directly from youtube
+
+📡 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                   InlineKeyboardButton("🔙 Back", callback_data="cbplayback"),
+                ],
+            ]
+        ),
+    )
+
+
+@Client.on_callback_query(filters.regex("cbplayback"))
+async def cbplayback(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**😕 Hey !! Give me something to play and searching on youtube.**""", 
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                   InlineKeyboardButton("Support", url=f"https://t.me/{GROUP_SUPPORT}"),
+                ],
+                [
+                   InlineKeyboardButton("Command", callback_data="cbhplay"),
+                ],
+                [
+                   InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                ],
+            ]
+        ),
     )
 
 
