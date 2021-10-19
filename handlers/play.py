@@ -568,25 +568,7 @@ async def play(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
         except Exception as e:
-            await message.reply_photo(
-            photo=f"{THUMB_IMG}", 
-            caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                       InlineKeyboardButton("Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                    ],
-                    [
-                       InlineKeyboardButton("Command", callback_data="cbhplay"),
-                    ],
-                    [
-                       InlineKeyboardButton("🗑️ Close", callback_data="closed"),
-                    ],
-                ]
-            )
-            )
-        await lel.delete()
-        # KennedyProject
+            await lel.edit("❌ **couldn't find song**")
             print(str(e))
             return
         dlurl=url
