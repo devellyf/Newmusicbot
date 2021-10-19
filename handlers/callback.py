@@ -335,6 +335,11 @@ async def cbguide(_, query: CallbackQuery):
     )
 
 
+@Client.on_callback_query(filters.regex("close"))
+async def close(_, query: CallbackQuery):
+    await query.message.delete()
+
+
 @Client.on_callback_query(filters.regex("cbhplay"))
 async def cbhplay(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -343,7 +348,7 @@ async def cbhplay(_, query: CallbackQuery):
 • `/play <query>` - for playing music via youtube
 • `/ytp <query>` - play music directly from youtube
 
-📡 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
+🔔 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -372,8 +377,3 @@ async def cbplayback(_, query: CallbackQuery):
             ]
         ),
     )
-
-
-@Client.on_callback_query(filters.regex("close"))
-async def close(_, query: CallbackQuery):
-    await query.message.delete()
