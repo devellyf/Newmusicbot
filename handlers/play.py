@@ -20,6 +20,7 @@ from pyrogram.errors import UserAlreadyParticipant
 from downloaders import youtube
 from config import (
     que,
+    THUMB_IMG as thm,
     DURATION_LIMIT,
     BOT_USERNAME as bu,
     UPDATES_CHANNEL,
@@ -537,8 +538,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("• Support ", url=f"https://t.me/{gs}"),
-                    InlineKeyboardButton("Close •", callback_data="closed"),
+                    InlineKeyboardButton("🔔 Support ", url=f"https://t.me/{gs}"),
+                    InlineKeyboardButton("🗑️ Close", callback_data="closed"),
                 ]
             ]
         )
@@ -576,9 +577,25 @@ async def play(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
         except Exception as e:
-            await lel.edit(
-                "❌ **couldn't find song**, please provide the correct song name."
+            await message.reply_photo(
+            photo=f"{THUMB_IMG}", 
+            caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                       InlineKeyboardButton("Support", url=f"https://t.me/{gs}"),
+                    ],
+                    [
+                       InlineKeyboardButton("Command", callback_data="cbhplay"),
+                    ],
+                    [
+                       InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                    ],
+                ]
             )
+            )
+        await lel.delete()
+        # KennedyProject
             print(str(e))
             return
         dlurl=url
@@ -586,8 +603,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
-                InlineKeyboardButton("Close •", callback_data="closed"),
+                InlineKeyboardButton("🔔 Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
             ]
          ]
         )
@@ -630,8 +647,13 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await lel.edit(toxxt,reply_markup=keyboard,disable_web_page_preview=True)
-            # WHY PEOPLE ALWAYS LOVE PORN ?? (A point to think)
+            await message.reply_photo(
+                photo=f"{thm}", 
+                caption=toxxt, 
+                reply_markup=keyboard
+            )
+            await lel.delete()
+            # veez project
             return
             # KONTOOOOOLLLLLLLLLLL
         except:
@@ -651,17 +673,33 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
-                await lel.edit(
-                    "❌ **couldn't find song**, please provide the correct song name."
+                await message.reply_photo(
+                photo=f"{thm}", 
+                caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                           InlineKeyboardButton("Support", url=f"https://t.me/{gs}"),
+                        ],
+                        [
+                           InlineKeyboardButton("Command", callback_data="cbhplay"),
+                        ],
+                        [
+                           InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                        ],
+                    ]
                 )
+                )
+                await lel.delete()
+                # KennedyProject
                 print(str(e))
                 return
             dlurl=url
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
-                InlineKeyboardButton("Close •", callback_data="closed"),
+                InlineKeyboardButton("🔔 Support", url=f"https://t.me/{gs}"),
+                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
             ],
         ]
     )
@@ -723,7 +761,7 @@ async def lol_cb(b, cb):
     if cb.from_user.id != useer_id:
         await cb.answer("💡 this is not for you !", show_alert=True)
         return
-    await cb.message.edit("🔁 **Processing**")
+    await cb.message.delete("🔁 **Processing**")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -742,7 +780,7 @@ async def lol_cb(b, cb):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await cb.message.edit(f"❌ **music with duration more than** `{DURATION_LIMIT}` **minutes, can't play !**")
+             await cb.message.reply_text(f"❌ **music with duration more than** `{DURATION_LIMIT}` **minutes, can't play !**")
              return
     except:
         pass
@@ -760,8 +798,8 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
-            InlineKeyboardButton("Close •", callback_data="closed"),
+            InlineKeyboardButton("🔔 Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
         ]
      ]
     )
@@ -878,7 +916,6 @@ async def ytplay(_, message: Message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    await lel.edit("🔁 **Processing**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -896,9 +933,25 @@ async def ytplay(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.edit(
-            "❌ **couldn't find song**, please provide the correct song name."
+        await message.reply_photo(
+        photo=f"{thm}", 
+        caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                   InlineKeyboardButton("Support", url=f"https://t.me/{gs}"),
+                ],
+                [
+                   InlineKeyboardButton("Command", callback_data="cbhplay"),
+                ],
+                [
+                   InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                ],
+            ]
         )
+        )
+        await lel.delete()
+        # KennedyProject
         print(str(e))
         return
     dlurl=url
@@ -906,8 +959,8 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("• Support", url=f"https://t.me/{gs}"),
-            InlineKeyboardButton("Close •", callback_data="closed"),
+            InlineKeyboardButton("🔔 Support", url=f"https://t.me/{gs}"),
+            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
         ]
      ]
     )
