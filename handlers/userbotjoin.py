@@ -64,8 +64,8 @@ async def addchannel(client, message):
 @authorized_users_only
 async def rem(client, message):
     try:
-        await USER.send_sticker(message.chat.id, f"{ubs}")
-        await USER.send_message(message.chat.id, "✅ userbot successfully left group")
+        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CYPNCJwACA0RhbkLHaItFAAFFSUQZW3YhLiqJb2MAAgYFAAIclOFWYPPBpmhRMYUhBA")
+        await USER.send_message(message.chat.id, "✅ I'm leaving your group, bye bye!")
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text("<b>user couldn't leave your group, may be floodwaits.\n\nor manually kick me from your group</b>")
