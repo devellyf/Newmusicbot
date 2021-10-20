@@ -620,12 +620,12 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
+            await lel.delete()
             await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
             )
-            await lel.delete()
             # veez project
             return
             # KONTOOOOOLLLLLLLLLLL
@@ -646,6 +646,7 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
+                await lel.delete()
                 await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
@@ -663,7 +664,6 @@ async def play(_, message: Message):
                     ]
                 )
                 )
-                await lel.delete()
                 # KennedyProject
                 print(str(e))
                 return
@@ -709,6 +709,7 @@ async def play(_, message: Message):
         except:
             message.reply("😕 **voice chat not found**\n\n» please turn on the voice chat first")
             return
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
@@ -716,7 +717,6 @@ async def play(_, message: Message):
             reply_markup=keyboard
         )
         os.remove("final.png")
-        return await lel.delete()
 
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
@@ -734,7 +734,7 @@ async def lol_cb(b, cb):
     if cb.from_user.id != useer_id:
         await cb.answer("💡 this is not for you !", show_alert=True)
         return
-    await cb.message.delete("🔁 **Processing**")
+    await cb.message.delete()
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -906,6 +906,7 @@ async def ytplay(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
+        await lel.delete()
         await message.reply_photo(
         photo=f"{THUMB_IMG}", 
         caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
@@ -923,7 +924,6 @@ async def ytplay(_, message: Message):
             ]
         )
         )
-        await lel.delete()
         # KennedyProject
         print(str(e))
         return
@@ -949,13 +949,13 @@ async def ytplay(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}\n\n🔢 Track position » `{position}`",
                    reply_markup=keyboard,
         )
         os.remove("final.png")
-        return await lel.delete()
     else:
         chat_id = get_chat_id(message.chat)
         que[chat_id] = []
@@ -970,10 +970,10 @@ async def ytplay(_, message: Message):
         except:
             message.reply("** sorry, no active voice chat here, please turn on the voice chat first**")
             return
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
                     reply_markup=keyboard)
         os.remove("final.png")
-        return await lel.delete()
