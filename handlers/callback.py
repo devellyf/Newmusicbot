@@ -157,8 +157,10 @@ async def cbhelp(_, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton(
-                        "📔 Fun Cmd", callback_data="cbfun"
-                    )
+                        "📔 Fun Cmd", callback_data="cbfun"),
+                    InlineKeyboardButton(
+                        "📒 Ownertools", callback_data="cbowner"
+                    ) 
                 ],
                 [
                     InlineKeyboardButton(
@@ -260,6 +262,26 @@ async def cbadmin(_, query: CallbackQuery):
                 ]
             ]
         )
+    )
+
+
+@Client.on_callback_query(filters.regex("cbowner"))
+async def cbowner(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""🤴 **here is the owner commands**
+
+/stats - show the bot statistic
+/broadcast (reply to message) - send a broadcast message from bot
+/block (user id - duration - reason) - block user for using your bot
+/unblock (user id - reason) - unblock user you blocked for using your bot
+/blocklist - show you the list of user was blocked for using your bot
+
+📝 note: all commands owned by this bot can be executed by the owner of the bot without any exceptions.
+
+💡 Bot by @{OWNER_NAME}""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
+        ),
     )
 
 
