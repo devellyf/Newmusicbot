@@ -33,10 +33,10 @@ async def stream(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="ɢʀᴏᴜᴘ",
+                        text="🔔 Support",
                         url=f"https://t.me/{GROUP_SUPPORT}"),
                     InlineKeyboardButton(
-                        text="ᴄʜᴀɴɴᴇʟ",
+                        text="📣 Channel",
                         url=f"https://t.me/{UPDATES_CHANNEL}")
                 ]
             ]
@@ -65,7 +65,7 @@ async def stream(_, message: Message):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="https://telegra.ph/file/36343b9d4742efe0b09cd.jpg",
-            caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:40]}](https://t.me/{GROUP_SUPPORT})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {costumer}",
+            caption=f"🏷 **Name:** [{title[:40]}](https://t.me/{GROUP_SUPPORT})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {costumer}\n\n🔢 Track position »** `{position}`",
             reply_markup=keyboard,
         )
         return await lel.delete()
