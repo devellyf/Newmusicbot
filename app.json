@@ -7,7 +7,7 @@
     "stack": "container",
     "env": {
         "SESSION_NAME": {
-            "description": "isi dengan string Pyrogram (P)",
+            "description": "fill with string Pyogram (P)",
             "required": true
         },
         "ARQ_API_KEY": {
@@ -24,7 +24,7 @@
             "value": ""
         },
         "BOT_USERNAME": {
-            "description": "Fill woth your blt username without @",
+            "description": "Fill with your bot username without @",
             "required": true,
             "value": "EmiexRobot"
         },
