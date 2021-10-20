@@ -22,7 +22,7 @@ SOFTWARE.
 
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT
+from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT, UPSTREAM_REPO
 from helpers.filters import command
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -54,9 +54,11 @@ async def _human_time_duration(seconds):
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""<b>👋 **Hello {message.from_user.mention}**</b> ❗
-**[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Is a bot designed to play music in your voice chat groups!**
-**To see some commands for using this bot, click » /help**""",
+        f"""<b>✨ Welcome {message.from_user.mention}!</b>
+
+**💭 [{BOT_NAME}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
+
+💡 Find out all the **Bot's commands** and how they work by clicking on the **» 📚 Commands** button!""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
@@ -64,13 +66,22 @@ async def start_(client: Client, message: Message):
                         "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],[
                     InlineKeyboardButton(
-                        "Source code​​", url="https://github.com/KennedyProject/KennedyXMusic"
+                        "📚 Command​​", callback_data="cbhelp"
                     ),
                     InlineKeyboardButton(
-                        "Group support", url=f"https://t.me/{GROUP_SUPPORT}")
+                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
                 ],[
                     InlineKeyboardButton(
-                        "How to use me​ ❓​", callback_data="cbguide"
+                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
+                    ),
+                    InlineKeyboardButton(
+                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                ],[
+                    InlineKeyboardButton(
+                        "🌐 Source Code", url=f"https://github.com/{UPSTREAM_REPO}")
+                ],[
+                    InlineKeyboardButton(
+                        "❔ How to use me​​", callback_data="cbguide"
                     )
                 ]
             ]
@@ -108,6 +119,7 @@ async def start(client: Client, message: Message):
 async def help(client: Client, message: Message):
     await message.reply_text(
         f"""<b>👋 **Hello** {message.from_user.mention()}</b>
+
 **Please press the button below to read the explanation and see the list of available commands !**
 
 💡 Bot by @{OWNER_NAME}""",
@@ -115,7 +127,7 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text=" Hoe to use me ❔", callback_data=f"cbguide"
+                        text=" Hoe to use me ❔", url=f"https://t.me/{BOT_USERNAME}?start=help"
                     )
                 ]
             ]
@@ -134,7 +146,7 @@ async def help_(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "📚 Command", callback_data="cbguide"
+                        "📚 Command", callback_data="cbhelp"
                     )
                 ]
             ]
@@ -165,7 +177,7 @@ async def get_uptime(client: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        f"🤖 {BOT_NAME} status:\n"
+        f"🎵 {BOT_NAME} status:\n"
         f"• **uptime:** `{uptime}`\n"
         f"• **start time:** `{START_TIME_ISO}`"
     )
