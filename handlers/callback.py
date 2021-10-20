@@ -79,7 +79,7 @@ async def cbstart(_, query: CallbackQuery):
                         "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
                 ],[
                     InlineKeyboardButton(
-                        "🌐 Source Code", url=f"https://github.com/{UPSTREAM_REPO}")
+                        "🌐 Source Code", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
                         "❔ How to use me​​", callback_data="cbguide"
