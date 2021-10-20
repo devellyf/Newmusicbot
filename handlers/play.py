@@ -253,12 +253,8 @@ async def p_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🔔 Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                InlineKeyboardButton(
-                    "📣 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"
-                ),
+                InlineKeyboardButton("🔙 Back", callback_data="menu")
             ],
-            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -313,12 +309,8 @@ async def m_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🔔 Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                InlineKeyboardButton(
-                    "📣 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"
-                ),
+                InlineKeyboardButton("🔙 Back", callback_data="menu")
             ],
-            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -401,7 +393,7 @@ async def m_cb(b, cb):
             await cb.message.edit(psn, reply_markup=keyboard)
 
     elif type_ == "pause":
-        spn = "⏸ music playback has paused"
+        mps = "⏸ music playback has paused"
         if (chet_id not in callsmusic.pytgcalls.active_calls) or (
             callsmusic.pytgcalls.active_calls[chet_id] == "paused"
         ):
@@ -410,8 +402,7 @@ async def m_cb(b, cb):
             )
         else:
             callsmusic.pytgcalls.pause_stream(chet_id)
-
-            await cb.message.edit(spn, reply_markup=keyboard)
+            await cb.message.edit(mps, reply_markup=keyboard)
 
     elif type_ == "cls":
         await cb.message.delete()
