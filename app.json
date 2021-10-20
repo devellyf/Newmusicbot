@@ -59,7 +59,7 @@
         "BROADCAST_AS_COPY": {
             "description": "if you don't know about this leave this on default value",
             "required": false,
-            "value": "false"
+            "value": "True"
         },
         "LOG_CHANNEL": {
             "description": "Channel for log who's start your bot",
