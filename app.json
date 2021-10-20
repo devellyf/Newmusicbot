@@ -48,6 +48,27 @@
             "required": true,
             "value": "https://github.com/KennedyProject/KennedyXMusic"
         },
+        "DATABASE_URL": {
+            "description": "Fill with mongodb uri from mongodb.com",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "your id",
+            "required": true
+        },
+        "BROADCAST_AS_COPY": {
+            "description": "if you don't know about this leave this on default value",
+            "required": false
+            "value": "false"
+        },
+        "LOG_CHANNEL": {
+            "description": "Channel for log who's start your bot",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "your id",
+            "required": true
+        },
         "BOT_IMG": {
             "description": "For alive pic.",
             "required": false,
