@@ -432,7 +432,7 @@ async def m_cb(b, cb):
 
 
 @Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
-async def play(client, message: Message):
+async def play(_, message: Message):
     global que
     global useer
     if message.chat.id in DISABLED_GROUPS:
@@ -647,8 +647,7 @@ async def play(client, message: Message):
                 views = results[0]["views"]
             except Exception as e:
                 await lel.delete()
-                await client.send_photo(
-                message.chat.id,
+                await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
                 reply_markup=InlineKeyboardMarkup(
@@ -825,7 +824,7 @@ async def lol_cb(b, cb):
 
 
 @Client.on_message(command(["ytp", f"ytp@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
-async def ytplay(client, message: Message):
+async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
@@ -908,8 +907,7 @@ async def ytplay(client, message: Message):
 
     except Exception as e:
         await lel.delete()
-        await client.send_photo(
-        message.chat.id,
+        await message.reply_photo(
         photo=f"{THUMB_IMG}", 
         caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
         reply_markup=InlineKeyboardMarkup(
