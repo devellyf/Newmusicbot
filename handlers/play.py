@@ -39,8 +39,9 @@ def cb_admin_check(func: Callable) -> Callable:
         if cb.from_user.id in admemes:
             return await func(client, cb)
         else:
-            await cb.answer("you not allowed to do this!", show_alert=True)
+            await cb.answer("💡 only admin can tap this button !", show_alert=True)
             return
+
     return decorator                                                                       
                                           
                                                                                     
@@ -201,7 +202,7 @@ async def settings(client, message):
         else:
             await message.reply(stats, reply_markup=r_ply("play"))
     else:
-        await message.reply("❌ **Nothing is currency playing**")
+        await message.reply("❌ **Nothing is currently playing**")
 
 
 @Client.on_message(
@@ -301,7 +302,7 @@ async def bt_cls(b, cb):
 
 
 @Client.on_callback_query(
-    filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$")
+    filters.regex(pattern=r"^(play|skip|leave|puse|resume|menu|cls)$")
 )
 @cb_admin_check
 async def m_cb(b, cb):
@@ -328,19 +329,6 @@ async def m_cb(b, cb):
     m_chat = cb.message.chat
 
     the_data = cb.message.reply_markup.inline_keyboard[1][0].callback_data
-    if type_ == "puse":
-        if (
-            chet_id not in callsmusic.pytgcalls.active_calls
-                ) or (
-                    callsmusic.pytgcalls.active_calls[chet_id] == "paused"
-                ):
-            await cb.answer("assistant is not connected to voice chat !", show_alert=True)
-        else:
-            callsmusic.pytgcalls.pause_stream(chet_id)
-            
-            await cb.answer("music paused!")
-            await cb.message.edit(updated_stats(m_chat, qeue), reply_markup=r_ply("play"))
-
     elif type_ == "play":
         if (chet_id not in callsmusic.pytgcalls.active_calls) or (
             callsmusic.pytgcalls.active_calls[chet_id] == "playing"
