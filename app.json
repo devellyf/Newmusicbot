@@ -53,6 +53,11 @@
             "required": false,
             "value": "https://telegra.ph/file/5f5f8e412644c47cc836a.jpg"
         },
+        "THUMB_IMG": {
+            "description": "For image on results.",
+            "required": false,
+            "value": "https://telegra.ph/file/510af19ec06191ce5fa42.png"
+        },
         "ASSISTANT_NAME": {
             "description": "Fill with your assistant username without @",
             "required": true,
