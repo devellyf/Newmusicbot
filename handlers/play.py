@@ -329,7 +329,7 @@ async def m_cb(b, cb):
     m_chat = cb.message.chat
 
     the_data = cb.message.reply_markup.inline_keyboard[1][0].callback_data
-    elif type_ == "play":
+    if type_ == "play":
         if (chet_id not in callsmusic.pytgcalls.active_calls) or (
             callsmusic.pytgcalls.active_calls[chet_id] == "playing"
         ):
