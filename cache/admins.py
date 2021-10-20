@@ -1,5 +1,6 @@
 from typing import Dict, List
 
+from config import admins
 
 admins: Dict[int, List[int]] = {}
 
