@@ -366,10 +366,10 @@ async def cbplayback(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                   InlineKeyboardButton("Support", url=f"https://t.me/{GROUP_SUPPORT}"),
+                   InlineKeyboardButton("Group Support", url=f"https://t.me/{GROUP_SUPPORT}"),
                 ],
                 [
-                   InlineKeyboardButton("Command", callback_data="cbhplay"),
+                   InlineKeyboardButton("See Command", callback_data="cbhplay"),
                 ],
                 [
                    InlineKeyboardButton("🗑️ Close", callback_data="closed"),
