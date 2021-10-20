@@ -51,6 +51,7 @@ from config import (
     UPSTREAM_REPO,
     OWNER_ID,
     BOT_NAME,
+    BOT_USERNAME,
 )
 from helpers.database import db
 from helpers.dbtools import main_broadcast_handler
