@@ -345,8 +345,8 @@ async def cbhplay(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""How to play music on {bn} {alv}
 
-• `/play <query>` - for playing music via youtube
-• `/ytp <query>` - play music directly from youtube
+• `/play (query)` - for playing music via youtube
+• `/ytp (query)` - play music directly from youtube
 
 🔔 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
         reply_markup=InlineKeyboardMarkup(
