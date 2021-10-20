@@ -254,8 +254,12 @@ async def p_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🔙 Back", callback_data="menu")
+                InlineKeyboardButton("• Support", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton(
+                    "Updates •", url=f"https://t.me/{UPDATES_CHANNEL}"
+                ),
             ],
+            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -302,7 +306,7 @@ async def bt_cls(b, cb):
 
 
 @Client.on_callback_query(
-    filters.regex(pattern=r"^(play|skip|leave|puse|resume|menu|cls)$")
+    filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$")
 )
 @cb_admin_check
 async def m_cb(b, cb):
@@ -310,8 +314,12 @@ async def m_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🔙 Back", callback_data="menu")
+                InlineKeyboardButton("• Support", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton(
+                    "Updates •", url=f"https://t.me/{UPDATES_CHANNEL}"
+                ),
             ],
+            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -329,7 +337,22 @@ async def m_cb(b, cb):
     m_chat = cb.message.chat
 
     the_data = cb.message.reply_markup.inline_keyboard[1][0].callback_data
-    if type_ == "play":
+    if type_ == "pause":
+        if (chet_id not in callsmusic.pytgcalls.active_calls) or (
+            callsmusic.pytgcalls.active_calls[chet_id] == "paused"
+        ):
+            await cb.answer(
+                "assistant is not connected to voice chat !", show_alert=True
+            )
+        else:
+            callsmusic.pytgcalls.pause_stream(chet_id)
+
+            await cb.answer("music paused")
+            await cb.message.edit(
+                updated_stats(m_chat, qeue), reply_markup=r_ply("play")
+            )
+
+    elif type_ == "play":
         if (chet_id not in callsmusic.pytgcalls.active_calls) or (
             callsmusic.pytgcalls.active_calls[chet_id] == "playing"
         ):
