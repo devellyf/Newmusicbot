@@ -26,7 +26,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
 from helpers.decorators import authorized_users_only
 from config import ALIVE_EMOJI as alv
-from config import BOT_NAME as bn, BOT_IMG, BOT_USERNAME, OWNER_NAME, GROUP_SUPPORT, UPDATES_CHANNEL, ASSISTANT_NAME
+from config import BOT_NAME as bn, BOT_IMG, BOT_USERNAME, OWNER_NAME, GROUP_SUPPORT, UPDATES_CHANNEL, ASSISTANT_NAME, UPSTREAM_REPO
 from handlers.play import cb_admin_check
 
 
@@ -55,23 +55,34 @@ async def _human_time_duration(seconds):
 @Client.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""<b>👋 **Hello [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})**</b> ❗
-**[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Is a bot designed to play music in your voice chat groups!**
-**To see some commands for using this bot, click » /help**""",
+        f"""<b>✨ Welcome [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})!</b>
+
+**💭 [{bn}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
+
+💡 Find out all the **Bot's commands** and how they work by clicking on the **» 📚 Commands** button!""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your group​ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                        "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],[
                     InlineKeyboardButton(
-                        "Source code​​", url="https://github.com/KennedyProject/KennedyXMusic"
+                        "📚 Command​​", callback_data="cbhelp"
                     ),
                     InlineKeyboardButton(
-                        "Group Support", url=f"https://t.me/{GROUP_SUPPORT}")
+                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
                 ],[
                     InlineKeyboardButton(
-                        "How to use me ❓​", callback_data="cbguide"
+                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
+                    ),
+                    InlineKeyboardButton(
+                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                ],[
+                    InlineKeyboardButton(
+                        "🌐 Source Code", url=f"https://github.com/{UPSTREAM_REPO}")
+                ],[
+                    InlineKeyboardButton(
+                        "❔ How to use me​​", callback_data="cbguide"
                     )
                 ]
             ]
@@ -151,7 +162,7 @@ async def cbhelp(_, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbguide"
+                        "🔙 Back", callback_data="cbstart"
                     )
                 ]
             ]
@@ -261,6 +272,8 @@ async def cbsudo(_, query: CallbackQuery):
 /gcast - send global messages via assistant
 /rmd - delete downloaded files
 /uptime - for see the uptime and start time bot launched
+/sysinfo - to see system bot info
+/eval and /sh - running evaluator or shell
 if using heroku
 /usage - for check you dyno heroku
 /update - for build update your bot
@@ -320,11 +333,6 @@ async def cbguide(_, query: CallbackQuery):
 💡 Bot by @{OWNER_NAME}**""",
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        "📚 Command List", callback_data="cbhelp"
-                    )
-                ],
                 [
                     InlineKeyboardButton(
                         "🗑 Close", callback_data="close"
