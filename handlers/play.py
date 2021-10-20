@@ -671,19 +671,17 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await lel.delete()
             await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
             )
+            await lel.delete()
             # veez project
             return
             # KONTOOOOOLLLLLLLLLLL
         except:
-            # await lel.edit("❌ **couldn't find song**")
 
-            # print(results)
             try:
                 url = f"https://youtube.com{results[0]['url_suffix']}"
                 title = results[0]["title"]
@@ -697,7 +695,6 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
-                await lel.delete()
                 await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
@@ -715,6 +712,7 @@ async def play(_, message: Message):
                     ]
                 )
                 )
+                await lel.delete()
                 # KennedyProject
                 print(str(e))
                 return
@@ -957,7 +955,6 @@ async def ytplay(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.delete()
         await message.reply_photo(
         photo=f"{THUMB_IMG}", 
         caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
@@ -975,6 +972,7 @@ async def ytplay(_, message: Message):
             ]
         )
         )
+        await lel.delete()
         # KennedyProject
         print(str(e))
         return
