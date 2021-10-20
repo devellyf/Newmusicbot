@@ -58,7 +58,7 @@
         },
         "BROADCAST_AS_COPY": {
             "description": "if you don't know about this leave this on default value",
-            "required": false
+            "required": false,
             "value": "false"
         },
         "LOG_CHANNEL": {
