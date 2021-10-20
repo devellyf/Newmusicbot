@@ -7,7 +7,7 @@
     "stack": "container",
     "env": {
         "SESSION_NAME": {
-            "description": "isi dengan string Pyrogram (P)",
+            "description": "fill with string Pyogram (P)",
             "required": true
         },
         "ARQ_API_KEY": {
@@ -24,7 +24,7 @@
             "value": ""
         },
         "BOT_USERNAME": {
-            "description": "Fill woth your blt username without @",
+            "description": "Fill with your bot username without @",
             "required": true,
             "value": "EmiexRobot"
         },
@@ -47,6 +47,27 @@
             "description": "If you forking, put your link on this value. if you not forking LEAVE THIS ONE!",
             "required": true,
             "value": "https://github.com/KennedyProject/KennedyXMusic"
+        },
+        "DATABASE_URL": {
+            "description": "Fill with mongodb uri from mongodb.com",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "your id",
+            "required": true
+        },
+        "BROADCAST_AS_COPY": {
+            "description": "if you don't know about this leave this on default value",
+            "required": false,
+            "value": "True"
+        },
+        "LOG_CHANNEL": {
+            "description": "Channel for log who's start your bot",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "your id",
+            "required": true
         },
         "BOT_IMG": {
             "description": "For alive pic.",

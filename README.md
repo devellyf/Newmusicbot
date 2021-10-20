@@ -8,6 +8,7 @@
 - NodeJS [nodesource.com](https://nodesource.com/)
 - Python 3.8+ or Higher
 - [PyTgCalls](https://github.com/pytgcalls/pytgcalls)
+- [MongoDB](https://cloud.mongodb.com/)
 
 ### Get STRING_SESSION from here:
 

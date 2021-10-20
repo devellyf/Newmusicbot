@@ -2,20 +2,36 @@
 # https://github.com/KennedyProject/KennedyXMusic
 
 
-import traceback
-import asyncio
 from asyncio import QueueEmpty
-from config import que
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
 
-from cache.admins import admins
-from helpers.channelmusic import get_chat_id
-from helpers.decorators import authorized_users_only, errors
-from helpers.filters import command, other_filters
 from callsmusic import callsmusic
 from callsmusic.queues import queues
-from config import BOT_USERNAME
+from config import BOT_USERNAME, que
+from cache.admins import admins
+from handlers.play import cb_admin_check
+from helpers.channelmusic import get_chat_id
+from helpers.dbtools import delcmd_is_on, delcmd_off, delcmd_on, handle_user_status
+from helpers.decorators import authorized_users_only, errors
+from helpers.filters import command, other_filters
+from pyrogram import Client, filters
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+)
+
+
+@Client.on_message()
+async def _(bot: Client, cmd: Message):
+    await handle_user_status(bot, cmd)
+
+
+@Client.on_message(filters.text & ~filters.private)
+async def delcmd(_, message: Message):
+    if await delcmd_is_on(message.chat.id) and message.text.startswith("/") or message.text.startswith("!") or message.text.startswith("."):
+    await message.delete()
+    await message.continue_propagation()
 
 
 @Client.on_message(command(["reload", f"reload@{BOT_USERNAME}"]))
@@ -100,3 +116,62 @@ async def skip(client, message):
     if not qeue:
         return
     await client.send_message(message.chat.id, f"⏭️ __You've skipped to the next song__")
+
+
+@Client.on_message(command(["auth", f"auth@{BOT_USERNAME}"]) & other_filters)
+@authorized_users_only
+async def authenticate(client, message):
+    global admins
+    if not message.reply_to_message:
+        return await message.reply("🔔 reply to message to authorize user !")
+    if message.reply_to_message.from_user.id not in admins[message.chat.id]:
+        new_admins = admins[message.chat.id]
+        new_admins.append(message.reply_to_message.from_user.id)
+        admins[message.chat.id] = new_admins
+        await message.reply(
+            "👮 user authorized.\n\nfrom now on, that's user can use the admin commands."
+        )
+    else:
+        await message.reply("✅ user already authorized!")
+
+
+@Client.on_message(command(["unauth", f"deauth@{BOT_USERNAME}"]) & other_filters)
+@authorized_users_only
+async def deautenticate(client, message):
+    global admins
+    if not message.reply_to_message:
+        return await message.reply("💡 reply to message to deauthorize user !")
+    if message.reply_to_message.from_user.id in admins[message.chat.id]:
+        new_admins = admins[message.chat.id]
+        new_admins.remove(message.reply_to_message.from_user.id)
+        admins[message.chat.id] = new_admins
+        await message.reply(
+            "👷 user deauthorized.\n\nfrom now that's user can't use the admin commands."
+        )
+    else:
+        await message.reply("✅ user already deauthorized!")
+
+
+# this is a anti cmd feature
+@Client.on_message(command(["delcmd", f"delcmd@{BOT_USERNAME}"]) & other_filters)
+@authorized_users_only
+async def delcmdc(_, message: Message):
+    if len(message.command) != 2:
+        return await message.reply_text(
+            "read the /help message to know how to use this command"
+        )
+    status = message.text.split(None, 1)[1].strip()
+    status = status.lower()
+    chat_id = message.chat.id
+    if status == "on":
+        if await delcmd_is_on(message.chat.id):
+            return await message.reply_text("✅ already activated")
+        await delcmd_on(chat_id)
+        await message.reply_text("🟢 activated successfully")
+    elif status == "off":
+        await delcmd_off(chat_id)
+        await message.reply_text("🔴 disabled successfully")
+    else:
+        await message.reply_text(
+            "read the /help message to know how to use this command"
+        )
