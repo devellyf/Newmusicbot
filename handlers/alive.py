@@ -71,7 +71,7 @@ async def alive(client, message):
     uptime = await _human_time_duration(int(uptime_sec))
     await client.send_photo(message.chat.id,
         photo=f"{BOT_IMG}",
-        caption=f"""**{alv} Holla {message.from_user.mention()}, I'm [{bn}](https://t.me/{BOT_USERNAME})**
+        caption=f"""**{alv} Holla {message.from_user.mention()}, I'm {bn}.**
 
 {alv} **I'm Working Properly**
 
