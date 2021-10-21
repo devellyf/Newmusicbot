@@ -71,7 +71,7 @@ async def alive(client, message):
     uptime = await _human_time_duration(int(uptime_sec))
     await client.send_photo(message.chat.id,
         photo=f"{BOT_IMG}",
-        caption=f"""**{alv} Holla I'm [{bn}](https://t.me/{BOT_USERNAME})**
+        caption=f"""**{alv} Holla {message.from_user.mention()}, I'm [{bn}](https://t.me/{BOT_USERNAME})**
 
 {alv} **I'm Working Properly**
 
@@ -86,10 +86,10 @@ async def alive(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "ᴀʙᴏᴜᴛ", callback_data="cbabout"
+                        "Support", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATES_CHANNEL}"
+                        "Updates", url=f"https://t.me/{UPDATES_CHANNEL}"
                     )
                 ]
             ]
