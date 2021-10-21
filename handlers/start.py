@@ -81,7 +81,7 @@ async def start_(client: Client, message: Message):
                         "🌐 Source Code", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
-                        "❔ How to use me​​", callback_data="cbguide"
+                        "❔ About me​​", callback_data="cbabout"
                     )
                 ]
             ]
