@@ -82,7 +82,7 @@ async def cbstart(_, query: CallbackQuery):
                         "🌐 Source Code", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
-                        "❔ How to use me​​", callback_data="cbguide"
+                        "❔ About me​​", callback_data="cbabout"
                     )
                 ]
             ]
@@ -113,17 +113,12 @@ __{bn} licensed under the GNU General Public License v.3.0__
 • Updates channel @{UPDATES_CHANNEL}
 • Group Support @{GROUP_SUPPORT}
 • Assistant @{ASSISTANT_NAME}
-• Here is my [Owner](https://t.me/{OWNER_NAME})**
-
-❓ Wanna make your own bot music? try click Source button!""",
+• Here is my [Owner](https://t.me/{OWNER_NAME})**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "Github​​", url="https://github.com/KennedyProject/KennedyXMusic"
-                    ),
-                    InlineKeyboardButton(
-                        "🔙 Back​", callback_data="cbadvanced"
+                        "🔙 Back​", callback_data="cbstart"
                     )
                 ]
             ]
@@ -200,38 +195,6 @@ async def cbbasic(_, query: CallbackQuery):
                 [
                     InlineKeyboardButton(
                         "🔙 Back", callback_data="cbhelp"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_callback_query(filters.regex("cbadvanced"))
-async def cbadvanced(_, query: CallbackQuery):
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-    await query.edit_message_text(
-        f"""**{alv} Holla I'm [{bn}](https://t.me/{BOT_USERNAME})**
-
-{alv} **I'm Working Properly**
-
-{alv} **Bot : 6.0 LATEST**
-
-{alv} **My Master : [{OWNER_NAME}](https://t.me/{OWNER_NAME})**
-
-{alv} **Service Uptime : `{uptime}`**
-
-**Thanks For Using Me ♥️**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "About me", callback_data="cbabout"
-                    ),
-                    InlineKeyboardButton(
-                        "Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
                     )
                 ]
             ]
