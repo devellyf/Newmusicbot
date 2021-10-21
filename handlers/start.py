@@ -127,26 +127,7 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text=" Hoe to use me ❔", url=f"https://t.me/{BOT_USERNAME}?start=help"
-                    )
-                ]
-            ]
-        )
-    )
-
-@Client.on_message(command("help") & filters.private & ~filters.edited)
-async def help_(client: Client, message: Message):
-    await message.reply_text(
-        f"""<b>👋 **Hello {message.from_user.mention} welcome to the help menu !**</b>
-
-**__In this menu you can open several available command menus, in each command menu there is also a brief explanation of each command__**
-
-💡 Bot by @{OWNER_NAME}""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "📚 Command", callback_data="cbhelp"
+                        text=" Hoe to use me ❔", url=f"https://t.me/{BOT_USERNAME}"
                     )
                 ]
             ]
