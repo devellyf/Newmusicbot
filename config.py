@@ -25,13 +25,14 @@ BOT_USERNAME = getenv("BOT_USERNAME", "EmiexRobot")
 ASSISTANT_NAME = getenv("ASSISTANT_NAME", "emiexhelper")
 GROUP_SUPPORT = getenv("GROUP_SUPPORT", "emikosupport")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "KennedyProject")
-OWNER_NAME = getenv("OWNER_NAME", "exgothboi") # isi dengan username kamu tanpa simbol @
+OWNER_NAME = getenv("OWNER_NAME", "exgothboi") # fill in your username without the @ symbol
 ALIVE_EMOJI = getenv("ALIVE_EMOJI", "⚪")
 PMPERMIT = getenv("PMPERMIT", "ENABLE")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
 OWNER_ID = int(os.environ.get("OWNER_ID"))
+# Database
 DATABASE_URL = os.environ.get("DATABASE_URL")  # fill with your mongodb url
 # make a private channel and get the channel id
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
