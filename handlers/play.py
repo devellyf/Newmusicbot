@@ -671,12 +671,12 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await _.send_photo(chid,
+            await lel.delete()
+            await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
             )
-            await lel.delete()
             return
 
         except:
@@ -694,6 +694,7 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
+                await lel.delete()
                 await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
                 caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
@@ -711,7 +712,6 @@ async def play(_, message: Message):
                     ]
                 )
                 )
-                await lel.delete()
                 print(str(e))
                 return
             dlurl=url
@@ -781,7 +781,7 @@ async def lol_cb(b, cb):
     if cb.from_user.id != useer_id:
         await cb.answer("💡 this is not for you !", show_alert=True)
         return
-    await cb.answer("📥 Downloading your song")
+    await cb.message.delete()
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -837,7 +837,6 @@ async def lol_cb(b, cb):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await cb.message.delete()
         await b.send_photo(
         chat_id,
         photo="final.png",
@@ -858,7 +857,6 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
-        await cb.message.delete()
         await b.send_photo(
         chat_id,
         photo="final.png",
@@ -953,6 +951,7 @@ async def ytplay(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
+        await lel.delete()
         await _.send_photo(chid,
         photo=f"{THUMB_IMG}", 
         caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
@@ -970,7 +969,6 @@ async def ytplay(_, message: Message):
             ]
         )
         )
-        await lel.delete()
         print(str(e))
         return
     dlurl=url
@@ -996,7 +994,8 @@ async def ytplay(_, message: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         await lel.delete()
-        await message.reply_photo(
+        await _.send_photo(
+            chid,
             photo="final.png",
             caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {r_by.mention}\n\n🔢 Track position » `{position}`",
                    reply_markup=keyboard,
@@ -1017,7 +1016,8 @@ async def ytplay(_, message: Message):
             message.reply("** sorry, no active voice chat here, please turn on the voice chat first**")
             return
         await lel.delete()
-        await message.reply_photo(
+        await _.send_photo(
+            chid,
             photo="final.png",
             caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
