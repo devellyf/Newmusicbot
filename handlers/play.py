@@ -671,15 +671,14 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await message.reply_photo(
+            await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
             )
             await lel.delete()
-            # veez project
             return
-            # KONTOOOOOLLLLLLLLLLL
+
         except:
 
             try:
@@ -695,7 +694,7 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
-                await message.reply_photo(
+                await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
                 caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
                 reply_markup=InlineKeyboardMarkup(
@@ -713,7 +712,6 @@ async def play(_, message: Message):
                 )
                 )
                 await lel.delete()
-                # KennedyProject
                 print(str(e))
                 return
             dlurl=url
@@ -783,7 +781,7 @@ async def lol_cb(b, cb):
     if cb.from_user.id != useer_id:
         await cb.answer("💡 this is not for you !", show_alert=True)
         return
-    await cb.message.delete()
+    await cb.answer("📥 Downloading your song")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -955,7 +953,7 @@ async def ytplay(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await message.reply_photo(
+        await _.send_photo(chid,
         photo=f"{THUMB_IMG}", 
         caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
         reply_markup=InlineKeyboardMarkup(
@@ -973,7 +971,6 @@ async def ytplay(_, message: Message):
         )
         )
         await lel.delete()
-        # KennedyProject
         print(str(e))
         return
     dlurl=url
