@@ -11,6 +11,7 @@ asyncio
 youtube_search
 search_engine_parser
 future
+psycopg2-binary
 ffmpeg-python
 Pillow
 future
@@ -28,3 +29,4 @@ gitpython
 pykeyboard
 telegraph
 dnspython
+sqlalchemy
