@@ -28,3 +28,4 @@ gitpython
 pykeyboard
 telegraph
 dnspython
+speedtest-cli
