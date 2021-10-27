@@ -21,15 +21,16 @@ SOFTWARE.
 
 
 import os
-import asyncio
+import re
 import time
 import shlex
-import requests
-import re
-import aiofiles
 import aiohttp
-from telegraph import upload_file
+import asyncio
+import requests
+import aiofiles
 from io import BytesIO
+from requests import get
+from telegraph import upload_file
 from typing import Callable, Coroutine, Dict, List, Tuple, Union
 from json import JSONDecodeError
 from pykeyboard import InlineKeyboard
@@ -348,3 +349,28 @@ async def carbon_func(client, message):
     await client.send_photo(message.chat.id, carbon)
     await m.delete()
     carbon.close()
+
+# ====== GITHUB ======
+
+
+Client.on_message(command("github"))
+def git(_,message):
+    user = message.text.split(' ')[1]
+    res = get(f'https://api.github.com/users/{user}').json()
+    data = f"""**Name**: {res['name']}
+**UserName**: {res['login']}
+**Link**: [{res['login']}]({res['html_url']})
+**Bio**: {res['bio']}
+**Company**: {res['company']}
+**Location**: {res['location']}
+**Public Repos: {res['public_repos']}
+**Followers**: {res['followers']}
+**Following**: {res['following']}
+"""
+    with open(f"{user}.jpg" ,"wb") as f:
+        kek = get(res['avatar_url']).content
+        f.write(kek)
+
+
+    message.reply_photo(f"{user}.jpg" , caption=data)
+    os.remove(f"{user}.jpg")
