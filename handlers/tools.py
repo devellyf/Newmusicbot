@@ -353,7 +353,7 @@ async def carbon_func(client, message):
 # ====== GITHUB ======
 
 
-Client.on_message(command("github"))
+@Client.on_message(command("github"))
 def git(_,message):
     user = message.text.split(' ')[1]
     res = get(f'https://api.github.com/users/{user}').json()
