@@ -33,6 +33,7 @@ import subprocess
 import socket
 import platform
 import uuid
+import speedtest
 from io import StringIO
 from time import time
 from functools import wraps
@@ -624,3 +625,15 @@ async def give_sysinfo(client, message):
 **DISK :** `{disk}`
     """
     await message.reply(somsg)
+
+
+@Client.on_message(command("speedtest") & ~filters.edited)
+@sudo_users_only
+def speedtest_(_,message):
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    speedtest_image = speed.results.share()
+
+    message.reply_photo(speedtest_image)
