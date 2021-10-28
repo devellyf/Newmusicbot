@@ -83,7 +83,7 @@ async def stats(_, message: Message):
     grp = grps.find({})
     grps_ = []
     for x in grp:
-    grps_.append(x['chat_id'])
+      grps_.append(x['chat_id'])
     
     total_ = len(grps_)
     totals, used, free = shutil.disk_usage(".")
