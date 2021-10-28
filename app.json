@@ -77,7 +77,7 @@
         "THUMB_IMG": {
             "description": "For image on results.",
             "required": false,
-            "value": "https://telegra.ph/file/510af19ec06191ce5fa42.png"
+            "value": "https://telegra.ph/file/2721b32485a6001bec390.jpg"
         },
         "ASSISTANT_NAME": {
             "description": "Fill with your assistant username without @",
@@ -87,7 +87,7 @@
         "BG_IMAGE": {
             "description": "For background image if you playing",
             "required": false,
-            "value": "https://telegra.ph/file/3379f1d4a6e61cdea1e5f.png"
+            "value": "https://telegra.ph/file/35f1a995c064bcd8e06fc.png"
         },
         "ALIVE_EMOJI": {
             "description": "for emoji in /alive command",
