@@ -576,12 +576,12 @@ async def play(_, message: Message):
             ]
         )
         file_name = get_file_name(audio)
-        title = audio.title
+        title = file_name
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
         ctitle = message.chat.title
         ctitle = await CHAT_TITLE(ctitle)
-        duration = round(audio.duration / 3600)
+        duration = convert_seconds(audio.duration)
         views = "Locally added"
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
