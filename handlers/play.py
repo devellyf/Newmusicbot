@@ -586,9 +586,9 @@ async def play(_, message: Message):
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
         file_path = await converter.convert(
-            (await message.reply_to_message.download(title))
-            if not path.isfile(path.join("downloads", title))
-            else title
+            (await message.reply_to_message.download(file_name))
+            if not path.isfile(path.join("downloads", file_name))
+            else file_name
         )
     elif urls:
         query = toxt
@@ -722,7 +722,7 @@ async def play(_, message: Message):
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
-        url = f"https://t.me/{GROUP_SUPPORT}"
+        url = message.reply_to_message.link
         r_by = message.from_user
         loc = file_path
         appendable = [s_name, r_by, loc]
@@ -737,7 +737,7 @@ async def play(_, message: Message):
         que[chat_id] = []
         qeue = que.get(chat_id)
         s_name = title
-        url = f"https://t.me/{GROUP_SUPPORT}"
+        url = message.reply_to_message.link
         r_by = message.from_user
         loc = file_path
         appendable = [s_name, r_by, loc]
