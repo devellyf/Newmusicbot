@@ -730,7 +730,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption=f"🏷 **Name:** [Telegram Audio]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
+            caption=f"🏷 **Name:** [Telegram audio file]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
             reply_markup=keyboard
         )
     else:
@@ -751,7 +751,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption = f"🏷 **Name:** [Telegram Audio]({url})\n⏱ **duration:** {duration}\n" \
+            caption = f"🏷 **Name:** [Telegram audio file]({url})\n⏱ **duration:** `{duration}`\n💡 **Status:** `Playing`\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
             reply_markup=keyboard
         )
@@ -852,7 +852,7 @@ async def lol_cb(b, cb):
         await b.send_photo(
         chat_id,
         photo="final.png",
-        caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
+        caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** `{duration}`\n💡 **Status:** `Playing`\n" \
                 + f"🎧 **Request by:** {r_by.mention} \n",
         reply_markup=keyboard,
         )
@@ -1011,7 +1011,7 @@ async def ytplay(_, message: Message):
         await _.send_photo(
             chid,
             photo="final.png",
-            caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
+            caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** `{duration}`\n💡 **Status:** `Playing`\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
                     reply_markup=keyboard)
         os.remove("final.png")
