@@ -33,6 +33,7 @@ import subprocess
 import socket
 import platform
 import uuid
+import asyncio
 import speedtest
 from io import StringIO
 from time import time
@@ -41,6 +42,7 @@ from os import environ, execle
 from inspect import getfullargspec
 from sys import version as pyver
 from git import Repo
+from pymongo import MongoClient
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -52,6 +54,7 @@ from config import (
     UPSTREAM_REPO,
     OWNER_ID,
     BOT_NAME,
+    DATABASE_URL,
     BOT_USERNAME,
 )
 from helpers.database import db
@@ -61,12 +64,30 @@ from helpers.filters import command
 from helpers.decorators import sudo_users_only
 
 
+users_db = MongoClient(DATABASE_URL)['users']
+col = users_db['USER']
+grps = users_db['GROUPS']
+
+
 # Stats Of Your Bot
 @Client.on_message(command("stats"))
 @sudo_users_only
-async def botstats(_, message: Message):
-    total, used, free = shutil.disk_usage(".")
-    total = humanbytes(total)
+async def stats(_, message: Message):
+    users = col.find({})
+    mfs = []
+    for x in users:
+      mfs.append(x['user_id'])
+    
+    total = len(mfs)
+  
+    grp = grps.find({})
+    grps_ = []
+    for x in grp:
+    grps_.append(x['chat_id'])
+    
+    total_ = len(grps_)
+    totals, used, free = shutil.disk_usage(".")
+    totals = humanbytes(total)
     used = humanbytes(used)
     free = humanbytes(free)
     cpu_usage = psutil.cpu_percent()
@@ -74,7 +95,7 @@ async def botstats(_, message: Message):
     disk_usage = psutil.disk_usage("/").percent
     total_users = await db.total_users_count()
     await message.reply_text(
-        text=f"**📊 stats of [{BOT_NAME}](https://t.me/{BOT_USERNAME})** \n\n**🤖 bot version:** `6.0` \n\n**🙎🏼 total users:** \n » **on bot pm:** `{total_users}` \n\n**💾 disk usage:** \n » **disk space:** `{total}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n\n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`",
+        text=f"**📊 stats of [{BOT_NAME}](https://t.me/{BOT_USERNAME})** \n\n**🤖 bot version:** `6.0` \n\n**🙎🏼 » **on bot pm:** `{total_users}` \n\n**💾 disk usage:** \n » **disk space:** `{totals}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n\n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`\n👥 Total Users: `{total}` across `{total_}` groups")",
         disable_web_page_preview=True,
         parse_mode="Markdown",
         quote=True,
