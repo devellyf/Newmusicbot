@@ -452,7 +452,7 @@ async def m_cb(b, cb):
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
-        hps = "✅ **the music playback has ended**"
+        await cb.message.delete()
         if chet_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chet_id)
@@ -460,12 +460,7 @@ async def m_cb(b, cb):
                 pass
 
             callsmusic.pytgcalls.leave_group_call(chet_id)
-            await cb.message.edit(
-                    hps,
-                    reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton("🗑 Close", callback_data="closed")]]
-                    ),
-                )
+            await b.send_message(chid, "✅ __The Userbot has disconnected from voice chat__")
         else:
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
@@ -662,7 +657,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await _.send_photo(chid,
+            await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
@@ -727,6 +722,7 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
             caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
@@ -747,6 +743,7 @@ async def play(_, message: Message):
         except:
             message.reply("😕 **voice chat not found**\n\n» please turn on the voice chat first")
             return
+        await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
             caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
