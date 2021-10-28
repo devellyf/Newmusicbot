@@ -570,7 +570,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🎛️ Menu ", callback_data="menu"),
+                    InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
                     InlineKeyboardButton("🗑️ Close", callback_data="closed"),
                 ]
             ]
@@ -618,7 +618,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("🎛️ Menu ", callback_data="menu"),
+                InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
                 InlineKeyboardButton("🗑️ Close", callback_data="closed"),
             ]
          ]
@@ -709,7 +709,7 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("🎛️ Menu ", callback_data="menu"),
+                InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
                 InlineKeyboardButton("🗑️ Close", callback_data="closed"),
             ],
         ]
@@ -810,7 +810,7 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🎛️ Menu ", callback_data="menu"),
+            InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
             InlineKeyboardButton("🗑️ Close", callback_data="closed"),
         ]
      ]
