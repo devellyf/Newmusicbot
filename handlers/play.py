@@ -274,7 +274,7 @@ async def p_cb(b, cb):
     type_ = cb.matches[0].group(1)
     cb.message.chat.id
     cb.message.chat
-    cb.message.reply_markup.inline_keyboard[1][0].callback_data
+    cb.message.reply_markup.inline_keyboard[0][0].callback_data
     if type_ == "playlist":
         queue = que.get(cb.message.chat.id)
         if not queue:
@@ -326,7 +326,7 @@ async def m_cb(b, cb):
     cb.message.chat.id
     m_chat = cb.message.chat
 
-    the_data = cb.message.reply_markup.inline_keyboard[1][0].callback_data
+    the_data = cb.message.reply_markup.inline_keyboard[0][0].callback_data
     if type_ == "pause":
         if (chet_id not in callsmusic.pytgcalls.active_calls) or (
             callsmusic.pytgcalls.active_calls[chet_id] == "paused"
@@ -586,9 +586,9 @@ async def play(_, message: Message):
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
         file_path = await converter.convert(
-            (await message.reply_to_message.download(file_name))
-            if not path.isfile(path.join("downloads", file_name))
-            else file_name
+            (await message.reply_to_message.download(title))
+            if not path.isfile(path.join("downloads", title))
+            else title
         )
     elif urls:
         query = toxt
