@@ -452,7 +452,6 @@ async def m_cb(b, cb):
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
-        await cb.message.delete()
         if chet_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chet_id)
@@ -461,6 +460,7 @@ async def m_cb(b, cb):
 
             callsmusic.pytgcalls.leave_group_call(chet_id)
             await b.send_message(chid, "✅ __The Userbot has disconnected from voice chat__")
+            await cb.message.delete()
         else:
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
