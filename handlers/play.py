@@ -581,7 +581,7 @@ async def play(_, message: Message):
         thumbnail = thumb_name
         ctitle = message.chat.title
         ctitle = await CHAT_TITLE(ctitle)
-        duration = round(audio.duration / 60)
+        duration = round(audio.duration / 3600)
         views = "Locally added"
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
@@ -730,7 +730,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
+            caption=f"🏷 **Name:** [Telegram Audio]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
             reply_markup=keyboard
         )
     else:
@@ -751,7 +751,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
+            caption = f"🏷 **Name:** [Telegram Audio]({url})\n⏱ **duration:** {duration}\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
             reply_markup=keyboard
         )
