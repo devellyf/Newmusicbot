@@ -489,20 +489,19 @@ async def play(_, message: Message):
     wew = usar.id 
     try:
         # chatdetails = await USER.get_chat(chid)
-        await lel.delete()
         await _.get_chat_member(chid, wew)
     except:
         for administrator in administrators:
             if administrator == message.from_user.id:
                 if message.chat.title.startswith("Channel Music: "):
-                    await _.send_message(chid,
+                    await lel.edit(
                         f"<b>please add {user.first_name} to your channel.</b>",
                     )
                     pass
                 try:
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
-                    await _.send_message(chid,
+                    await lel.edit(
                         "<b>💡 **To use me, I need to be an Administrator with the permissions:\n\n» ❌ __Delete messages__\n» ❌ __Ban users__\n» ❌ __Add users__\n» ❌ __Manage voice chat__\n\n**Then type /reload**</b>",
                     )
                     return
@@ -511,7 +510,7 @@ async def play(_, message: Message):
                     await USER.send_message(
                         message.chat.id, "**__I'm joined to this group for playing music on voice chat__**"
                     )
-                    await _.send_message(chid,
+                    await lel.edit(
                         "<b>💡 helper userbot joined your chat</b>",
                     )
                 except UserAlreadyParticipant:
@@ -526,13 +525,13 @@ async def play(_, message: Message):
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
-        await _.send_message(chid,
+        await lel.edit(
             f"<i>{user.first_name} was banned in this group, ask admin to unban @{ASSISTANT_NAME} manually.</i>"
         )
         return
     text_links=None
     if message.reply_to_message:
-        if message.reply_to_message.audio.title:
+        if message.reply_to_message.audio or message.reply_to_message.voice:
             pass
         entities = []
         if message.entities:
@@ -576,6 +575,7 @@ async def play(_, message: Message):
                 ]
             ]
         )
+        file_name = get_file_name(audio)
         title = audio.title
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
@@ -667,6 +667,7 @@ async def play(_, message: Message):
                 caption=toxxt, 
                 reply_markup=keyboard
             )
+            await lel.delete()
             return
 
         except:
