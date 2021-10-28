@@ -109,6 +109,17 @@ async def generate_cover(title, thumbnail, ctitle):
     os.remove("background.png")
 
 
+@Client.on_callback_query(
+    filters.regex(pattern=r"^(closed)$")
+)
+@cb_admin_check
+async def bt_cls(b, cb):
+    type_ = cb.matches[0].group(1)
+    cb.message.chat.id
+    if type_ == "closed":
+        await cb.answer("Closed Thumbnail")
+        await cb.message.delete()
+
 
 @Client.on_message(command(["playlist", f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
@@ -116,7 +127,6 @@ async def playlist(client, message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🔔 Support", url=f"https://t.me/{GROUP_SUPPORT}"),
                 InlineKeyboardButton(
                     "🗑️ Close", callback_data="closed"
                 ),
@@ -254,12 +264,8 @@ async def p_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("• Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                InlineKeyboardButton(
-                    "Updates •", url=f"https://t.me/{UPDATES_CHANNEL}"
-                ),
+                InlineKeyboardButton("🔙 Back", callback_data="menu")
             ],
-            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -294,18 +300,6 @@ async def p_cb(b, cb):
 
 
 @Client.on_callback_query(
-    filters.regex(pattern=r"^(closed)$")
-)
-@cb_admin_check
-async def bt_cls(b, cb):
-    type_ = cb.matches[0].group(1)
-    cb.message.chat.id
-    if type_ == "closed":
-        await cb.answer("Closed Thumbnail")
-        await cb.message.delete()
-
-
-@Client.on_callback_query(
     filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$")
 )
 @cb_admin_check
@@ -314,12 +308,8 @@ async def m_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("• Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                InlineKeyboardButton(
-                    "Updates •", url=f"https://t.me/{UPDATES_CHANNEL}"
-                ),
+                InlineKeyboardButton("🔙 Back", callback_data="menu")
             ],
-            [InlineKeyboardButton("🔙 Back", callback_data="menu")],
         ]
     )
 
@@ -496,22 +486,23 @@ async def play(_, message: Message):
     except:
         user.first_name = "helper"
     usar = user
-    wew = usar.id
+    wew = usar.id 
     try:
         # chatdetails = await USER.get_chat(chid)
+        await lel.delete()
         await _.get_chat_member(chid, wew)
     except:
         for administrator in administrators:
             if administrator == message.from_user.id:
                 if message.chat.title.startswith("Channel Music: "):
-                    await lel.edit(
+                    await _.send_message(chid,
                         f"<b>please add {user.first_name} to your channel.</b>",
                     )
                     pass
                 try:
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
-                    await lel.edit(
+                    await _.send_message(chid,
                         "<b>💡 **To use me, I need to be an Administrator with the permissions:\n\n» ❌ __Delete messages__\n» ❌ __Ban users__\n» ❌ __Add users__\n» ❌ __Manage voice chat__\n\n**Then type /reload**</b>",
                     )
                     return
@@ -520,7 +511,7 @@ async def play(_, message: Message):
                     await USER.send_message(
                         message.chat.id, "**__I'm joined to this group for playing music on voice chat__**"
                     )
-                    await lel.edit(
+                    await _.send_message(chid,
                         "<b>💡 helper userbot joined your chat</b>",
                     )
                 except UserAlreadyParticipant:
@@ -535,7 +526,7 @@ async def play(_, message: Message):
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
-        await lel.edit(
+        await _.send_message(chid,
             f"<i>{user.first_name} was banned in this group, ask admin to unban @{ASSISTANT_NAME} manually.</i>"
         )
         return
@@ -585,8 +576,7 @@ async def play(_, message: Message):
                 ]
             ]
         )
-        file_name = get_file_name(audio)
-        title = file_name
+        title = audio.title
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
         ctitle = message.chat.title
@@ -619,6 +609,7 @@ async def play(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
         except Exception as e:
+            await lel.delete()
             await lel.edit("❌ **couldn't find song**")
             print(str(e))
             return
@@ -671,8 +662,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await lel.delete()
-            await message.reply_photo(
+            await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
@@ -697,7 +687,7 @@ async def play(_, message: Message):
                 await lel.delete()
                 await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
-                caption="😕 **Hey !! Give me something to play and searching on youtube.**",  
+                caption="😕 **Invalid Syntax try to read the help on button bellow!**",  
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -736,7 +726,7 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await message.reply_photo(
+        await _.send_photo(chid,
             photo="final.png",
             caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
             reply_markup=keyboard
@@ -756,8 +746,7 @@ async def play(_, message: Message):
         except:
             message.reply("😕 **voice chat not found**\n\n» please turn on the voice chat first")
             return
-        await lel.delete()
-        await message.reply_photo(
+        await _.send_photo(chid,
             photo="final.png",
             caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** {duration}\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
@@ -800,7 +789,7 @@ async def lol_cb(b, cb):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await cb.message.reply_text(f"❌ **music with duration more than** `{DURATION_LIMIT}` **minutes, can't play !**")
+             await b.send_message(chat_id, f"❌ **music with duration more than** `{DURATION_LIMIT}` **minutes, can't play !**")
              return
     except:
         pass
@@ -954,7 +943,7 @@ async def ytplay(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
         photo=f"{THUMB_IMG}", 
-        caption="😕 **Hey !! Give me something to play and searching on youtube.**", 
+        caption="😕 **Invalid Syntax try to read the help on button below!**", 
         reply_markup=InlineKeyboardMarkup(
             [
                 [
