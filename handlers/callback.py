@@ -173,9 +173,8 @@ async def cbbasic(_, query: CallbackQuery):
         f"""<b>{alv} basic commands for bots
 
 [GROUP SETTINGS]
-/play (title) - play music via youtube
+/play (title / reply to audio) - play music via youtube
 /ytp (title) - play music live
-/stream (reply to audio) - play music via reply to audio
 /playlist - view queue list
 /song (title) - download music from youtube
 /search (title) - search for music from youtube in detail
