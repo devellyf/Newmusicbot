@@ -968,7 +968,7 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🔔 Support", url=f"https://t.me/{GROUP_SUPPORT}"),
+            InlineKeyboardButton("🎚️ Menu", callback_data="menu"),
             InlineKeyboardButton("🗑️ Close", callback_data="closed"),
         ]
      ]
