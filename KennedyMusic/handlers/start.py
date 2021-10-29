@@ -22,11 +22,11 @@ SOFTWARE.
 
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT, UPSTREAM_REPO
-from helpers.filters import command
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from helpers.decorators import sudo_users_only, authorized_users_only
+from KennedyMusic.config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, GROUP_SUPPORT, UPSTREAM_REPO
+from KennedyMusic.helpers.filters import command
+from KennedyMusic.helpers.decorators import sudo_users_only, authorized_users_only
 
 
 START_TIME = datetime.utcnow()
