@@ -5,11 +5,11 @@ import aiofiles
 import asyncio
 import aiohttp
 import requests
-import KennedyMusic.converter
 from os import path
 from asyncio.queues import QueueEmpty
 from pyrogram import Client, filters
 from typing import Callable
+import KennedyMusic.converter.converter
 from KennedyMusic.helpers.channelmusic import get_chat_id
 from KennedyMusic.callsmusic import callsmusic
 from KennedyMusic.callsmusic.queues import queues
