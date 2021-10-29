@@ -571,10 +571,7 @@ async def play(_, message: Message):
                 ]
             ]
         )
-    if message.reply_to_message.audio:
         file_name = get_file_name(audio)
-        title = audio.title
-    if message.reply_to_message.voice:
         title = file_name
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
@@ -729,7 +726,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption=f"🏷 **Name:** [{title}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
+            caption=f"🏷 **Name:** [Telegram audio]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}\n\n🔢 Track position » `{position}`",
             reply_markup=keyboard
         )
     else:
@@ -750,7 +747,7 @@ async def play(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
             photo="final.png",
-            caption = f"🏷 **Name:** [{title}]({url})\n⏱ **duration:** `{duration}`\n💡 **Status:** `Playing`\n" \
+            caption = f"🏷 **Name:** [Telegram audio]({url})\n⏱ **duration:** `{duration}`\n💡 **Status:** `Playing`\n" \
                     + f"🎧 **Request by:** {r_by.mention} \n",
             reply_markup=keyboard
         )
