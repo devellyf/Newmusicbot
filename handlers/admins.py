@@ -1,7 +1,3 @@
-# Copyright by KennedyProject 2021
-# https://github.com/KennedyProject/KennedyXMusic
-
-
 from asyncio import QueueEmpty
 
 from callsmusic import callsmusic
@@ -25,13 +21,6 @@ from pyrogram.types import (
 @Client.on_message()
 async def _(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
-
-
-@Client.on_message(filters.text & ~filters.private)
-async def delcmd(_, message: Message):
-    if await delcmd_is_on(message.chat.id) and message.text.startswith("/") or message.text.startswith("!") or message.text.startswith("."):
-       await message.delete()
-    await message.continue_propagation()
 
 
 @Client.on_message(command(["reload", f"reload@{BOT_USERNAME}"]))
