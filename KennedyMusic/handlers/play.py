@@ -95,7 +95,7 @@ async def generate_cover(title, thumbnail, ctitle):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/Roboto-Light.ttf", 51)
-    draw.text((30, 543), f"Playing on {ctitle[:10]} ...", (0, 0, 0), font=font)
+    draw.text((30, 543), f"Playing on {ctitle[:13]} ...", (0, 0, 0), font=font)
     font = ImageFont.truetype("etc/Roboto-Medium.ttf", 75)
     draw.text((30, 615),
         f"{title[:20]} ...",
@@ -472,7 +472,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔄 **Processing**")
+    lel = await message.reply("🔎 **Processing** 🔎")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -586,7 +586,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🔎 **Searching**")
+        await lel.edit("🔄 **Processing**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -859,7 +859,7 @@ async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔎 **Searching**")
+    lel = await message.reply("🔎 **Searching** 🔎")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
