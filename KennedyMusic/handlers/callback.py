@@ -168,7 +168,6 @@ async def cbbasic(_, query: CallbackQuery):
 /playlist - view queue list
 /song (title) - download music from youtube
 /search (title) - search for music from youtube in detail
-/saavn (title) - download music from saavn
 /video (title) - download music from youtube in detail
 [ MORE ]
 /alive - check alive bot
