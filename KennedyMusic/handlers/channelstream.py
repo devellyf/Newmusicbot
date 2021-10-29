@@ -14,29 +14,29 @@ from pyrogram.errors import UserAlreadyParticipant
 from pyrogram.types import Voice
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
-from handlers.play import generate_cover
-from handlers.play import cb_admin_check
-from handlers.play import transcode
-from handlers.play import convert_seconds
-from handlers.play import time_to_seconds
-from handlers.play import changeImageSize
-from config import BOT_NAME as bn
-from config import DURATION_LIMIT
-from config import UPDATES_CHANNEL as updateschannel
-from config import que
-from cache.admins import admins as a
-from helpers.errors import DurationLimitError
-from helpers.decorators import errors
-from helpers.admins import get_administrators
-from helpers.channelmusic import get_chat_id
-from helpers.decorators import authorized_users_only
-from helpers.filters import command, other_filters
-from helpers.gets import get_file_name
-from callsmusic import callsmusic
-from callsmusic.callsmusic import client as USER
-from converter.converter import convert
-from downloaders import youtube
-from callsmusic.queues import queues
+from KennedyMusic.handlers.play import generate_cover
+from KennedyMusic.handlers.play import cb_admin_check
+from KennedyMusic.handlers.play import transcode
+from KennedyMusic.handlers.play import convert_seconds
+from KennedyMusic.handlers.play import time_to_seconds
+from KennedyMusic.handlers.play import changeImageSize
+from KennedyMusic.config import BOT_NAME as bn
+from KennedyMusic.config import DURATION_LIMIT
+from KennedyMusic.config import UPDATES_CHANNEL as updateschannel
+from KennedyMusic.config import que
+from KennedyMusic.cache.admins import admins as a
+from KennedyMusic.helpers.errors import DurationLimitError
+from KennedyMusic.helpers.decorators import errors
+from KennedyMusic.helpers.admins import get_administrators
+from KennedyMusic.helpers.channelmusic import get_chat_id
+from KennedyMusic.helpers.decorators import authorized_users_only
+from KennedyMusic.helpers.filters import command, other_filters
+from KennedyMusic.helpers.gets import get_file_name
+from KennedyMusic.callsmusic import callsmusic
+from KennedyMusic.callsmusic.callsmusic import client as USER
+from KennedyMusic.converter.converter import convert
+from KennedyMusic.downloaders import youtube
+from KennedyMusic.callsmusic.queues import queues
 
 chat_id = None
 
