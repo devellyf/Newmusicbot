@@ -1,1 +1,1 @@
-worker: python3 KennedyMusic
+worker: python3 main.py
