@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from config import admins
+from KennedyMusic.config import admins
 
 admins: Dict[int, List[int]] = {}
 
