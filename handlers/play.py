@@ -290,7 +290,7 @@ async def p_cb(b, cb):
         temp = []
         for t in queue:
             temp.append(t)
-        now_playing = temp[0][0]
+        now_playing = temp[1][0]
         by = temp[0][1].mention(style="md")
         msg = "**Now playing** in {}".format(cb.message.chat.title)
         msg += "\n• " + now_playing
