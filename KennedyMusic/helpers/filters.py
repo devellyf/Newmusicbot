@@ -1,4 +1,3 @@
-
 # Calls Music 1 - Telegram bot for streaming audio in group calls
 # Copyright (C) 2021  Roj Serbest
 
@@ -20,7 +19,7 @@ from typing import List, Union
 
 from pyrogram import filters
 
-from config import COMMAND_PREFIXES
+from KennedyMusic.config import COMMAND_PREFIXES
 
 other_filters = filters.group & ~filters.edited & ~filters.via_bot & ~filters.forwarded
 other_filters2 = (
