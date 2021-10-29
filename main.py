@@ -1,8 +1,8 @@
 import requests
 from pyrogram import Client as Bot
 
-from callsmusic import run
-from config import API_ID, API_HASH, BOT_TOKEN, BG_IMAGE
+from KennedyMusic.callsmusic import run
+from KennedyMusic.config import API_ID, API_HASH, BOT_TOKEN, BG_IMAGE
 
 response = requests.get(BG_IMAGE)
 with open("./etc/foreground.png", "wb") as file:
