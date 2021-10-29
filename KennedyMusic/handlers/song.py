@@ -39,8 +39,8 @@ from pyrogram.types import Message
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
-from helpers.filters import command
-from config import DURATION_LIMIT, BOT_USERNAME, BOT_NAME, arq, aiohttpsession as session
+from KennedyMusic.helpers.filters import command
+from KennedyMusic.config import DURATION_LIMIT, BOT_USERNAME, BOT_NAME, arq, aiohttpsession as session
 
 
 @Client.on_message(filters.command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
