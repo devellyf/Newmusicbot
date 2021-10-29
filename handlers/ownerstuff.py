@@ -45,7 +45,7 @@ from git import Repo
 from pymongo import MongoClient
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import (
     HEROKU_API_KEY,
     HEROKU_APP_NAME,
