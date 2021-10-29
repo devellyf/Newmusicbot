@@ -109,18 +109,6 @@ async def generate_cover(title, thumbnail, ctitle):
     os.remove("background.png")
 
 
-@Client.on_callback_query(
-    filters.regex(pattern=r"^(closed)$")
-)
-@cb_admin_check
-async def bt_cls(b, cb):
-    type_ = cb.matches[0].group(1)
-    cb.message.chat.id
-    if type_ == "closed":
-        await cb.answer("Closed Thumbnail")
-        await cb.message.delete()
-
-
 @Client.on_message(command(["playlist", f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
 
@@ -128,7 +116,7 @@ async def playlist(client, message):
         [
             [
                 InlineKeyboardButton(
-                    "🗑️ Close", callback_data="closed"
+                    "🗑️ Close", callback_data="close"
                 ),
             ]
         ]
@@ -450,7 +438,7 @@ async def m_cb(b, cb):
                 await cb.message.edit(
                     nmq,
                     reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton("🗑 Close", callback_data="closed")]]
+                        [[InlineKeyboardButton("🗑 Close", callback_data="close")]]
                     ),
                 )
             else:
@@ -471,7 +459,7 @@ async def m_cb(b, cb):
             await cb.message.edit(
                     kntls,
                     reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton("🗑 Close", callback_data="closed")]]
+                        [[InlineKeyboardButton("🗑 Close", callback_data="close")]]
                     ),
                 )
         else:
@@ -579,7 +567,7 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                    InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                    InlineKeyboardButton("🗑️ Close", callback_data="close"),
                 ]
             ]
         )
@@ -627,7 +615,7 @@ async def play(_, message: Message):
          [
             [
                 InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ]
          ]
         )
@@ -706,7 +694,7 @@ async def play(_, message: Message):
                            InlineKeyboardButton("See Command", callback_data="cbhplay"),
                         ],
                         [
-                           InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                           InlineKeyboardButton("🗑️ Close", callback_data="close"),
                         ],
                     ]
                 )
@@ -718,7 +706,7 @@ async def play(_, message: Message):
                  [
             [
                 InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ],
         ]
     )
@@ -819,7 +807,7 @@ async def lol_cb(b, cb):
      [
         [
             InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+            InlineKeyboardButton("🗑️ Close", callback_data="close"),
         ]
      ]
     )
@@ -964,7 +952,7 @@ async def ytplay(_, message: Message):
                    InlineKeyboardButton("See Command", callback_data="cbhplay"),
                 ],
                 [
-                   InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+                   InlineKeyboardButton("🗑️ Close", callback_data="close"),
                 ],
             ]
         )
@@ -977,7 +965,7 @@ async def ytplay(_, message: Message):
      [
         [
             InlineKeyboardButton("🎚️ Menu", callback_data="menu"),
-            InlineKeyboardButton("🗑️ Close", callback_data="closed"),
+            InlineKeyboardButton("🗑️ Close", callback_data="close"),
         ]
      ]
     )
