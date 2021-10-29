@@ -1,21 +1,23 @@
 import requests
-from pyrogram import Client
+from pyrogram import Client as Bot
 
+from KennedyMusic.callsmusic import run
 from KennedyMusic.config import API_ID, API_HASH, BOT_TOKEN, BG_IMAGE
-from KennedyMusic.callsmusic.callsmusic import run
 
 response = requests.get(BG_IMAGE)
 with open("./etc/foreground.png", "wb") as file:
     file.write(response.content)
 
 
-bot = Client(
+bot = Bot(
     ":memory:",
     API_ID,
     API_HASH,
     bot_token=BOT_TOKEN,
     plugins=dict(root="KennedyMusic/handlers")
 )
+
+print("[INFO]: YOUR MUSIC BOT STARTED!")
 
 bot.start()
 run()
