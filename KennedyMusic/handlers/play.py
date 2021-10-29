@@ -9,7 +9,7 @@ from os import path
 from asyncio.queues import QueueEmpty
 from pyrogram import Client, filters
 from typing import Callable
-import KennedyMusic.converter.converter
+from KennedyMusic.converter.converter import convert
 from KennedyMusic.helpers.channelmusic import get_chat_id
 from KennedyMusic.callsmusic import callsmusic
 from KennedyMusic.callsmusic.queues import queues
@@ -579,7 +579,7 @@ async def play(_, message: Message):
         views = "Locally added"
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
-        file_path = await converter.convert(
+        file_path = await convert(
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name))
             else file_name
@@ -619,7 +619,7 @@ async def play(_, message: Message):
         )
         requested_by = message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
-        file_path = await converter.convert(youtube.download(url))        
+        file_path = await convert(youtube.download(url))        
     else:
         query = ""
         for i in message.command[1:]:
@@ -710,7 +710,7 @@ async def play(_, message: Message):
     )
             requested_by = message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
-            file_path = await converter.convert(youtube.download(url))   
+            file_path = await convert(youtube.download(url))   
     chat_id = get_chat_id(message.chat)
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
@@ -811,7 +811,7 @@ async def lol_cb(b, cb):
     )
     requested_by = useer_name
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))  
+    file_path = await convert(youtube.download(url))  
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
@@ -969,7 +969,7 @@ async def ytplay(_, message: Message):
     )
     requested_by = message.from_user.first_name
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
