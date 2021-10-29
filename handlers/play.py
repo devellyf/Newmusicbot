@@ -573,8 +573,8 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = audio.title
-    if message.reply_to_message.voice:
-        title = "Telegram audio"
+        if message.reply_to_message.voice:
+            title = "Telegram audio"
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
         ctitle = message.chat.title
