@@ -10,21 +10,21 @@ from os import path
 from asyncio.queues import QueueEmpty
 from pyrogram import Client, filters
 from typing import Callable
-from helpers.channelmusic import get_chat_id
-from callsmusic import callsmusic
-from callsmusic.queues import queues
-from helpers.admins import get_administrators
+from KennedyMusic.helpers.channelmusic import get_chat_id
+from KennedyMusic.callsmusic import callsmusic
+from KennedyMusic.callsmusic.queues import queues
+from KennedyMusic.helpers.admins import get_administrators
 from youtube_search import YoutubeSearch
-from callsmusic.callsmusic import client as USER
+from KennedyMusic.callsmusic.callsmusic import client as USER
 from pyrogram.errors import UserAlreadyParticipant
-from downloaders import youtube
-from config import que, THUMB_IMG, DURATION_LIMIT, BOT_USERNAME, UPDATES_CHANNEL, GROUP_SUPPORT, ASSISTANT_NAME, BOT_NAME
-from helpers.chattitle import CHAT_TITLE
-from helpers.filters import command, other_filters
-from helpers.decorators import authorized_users_only
-from helpers.gets import get_file_name, get_url
+from KennedyMusic.downloaders import youtube
+from KennedyMusic.config import que, THUMB_IMG, DURATION_LIMIT, BOT_USERNAME, UPDATES_CHANNEL, GROUP_SUPPORT, ASSISTANT_NAME, BOT_NAME
+from KennedyMusic.helpers.chattitle import CHAT_TITLE
+from KennedyMusic.helpers.filters import command, other_filters
+from KennedyMusic.helpers.decorators import authorized_users_only
+from KennedyMusic.helpers.gets import get_file_name, get_url
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, Voice
-from cache.admins import admins as a
+from KennedyMusic.cache.admins import admins as a
 from PIL import Image, ImageFont, ImageDraw
 
 
