@@ -18,17 +18,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-# Sena (@xgothboi)
-# Kalo ngedit jangan hapus credit ya meki
-# YAHAHA WAHYOE
-
 
 from os import path
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from time import time
 from datetime import datetime
-from config import (
+from KennedyMusic.config import (
     BOT_NAME as bn,
     BOT_USERNAME,
     BOT_IMG,
@@ -38,7 +34,7 @@ from config import (
     GROUP_SUPPORT,
     ALIVE_EMOJI as alv,
 )
-from helpers.filters import command, other_filters
+from KennedyMusic.helpers.filters import command, other_filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 
