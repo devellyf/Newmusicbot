@@ -269,6 +269,14 @@ async def p_cb(b, cb):
         ]
     )
 
+    ngentot = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("🗑️ Close", callback_data="close")
+            ],
+        ]
+    )
+
     global que    
     que.get(cb.message.chat.id)
     type_ = cb.matches[0].group(1)
@@ -278,7 +286,7 @@ async def p_cb(b, cb):
     if type_ == "playlist":
         queue = que.get(cb.message.chat.id)
         if not queue:
-            await cb.message.edit("**nothing is playing !**")
+            await cb.message.edit("**nothing is playing !**", reply_markup=ngentot)
         temp = []
         for t in queue:
             temp.append(t)
