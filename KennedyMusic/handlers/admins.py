@@ -1,14 +1,14 @@
 from asyncio import QueueEmpty
 
-from callsmusic import callsmusic
-from callsmusic.queues import queues
-from config import BOT_USERNAME, que
-from cache.admins import admins
-from handlers.play import cb_admin_check
-from helpers.channelmusic import get_chat_id
-from helpers.dbtools import delcmd_is_on, delcmd_off, delcmd_on, handle_user_status
-from helpers.decorators import authorized_users_only, errors
-from helpers.filters import command, other_filters
+from KennedyMusic.callsmusic import callsmusic
+from KennedyMusic.callsmusic.queues import queues
+from KennedyMusic.config import BOT_USERNAME, que
+from KennedyMusic.cache.admins import admins
+from KennedyMusic.handlers.play import cb_admin_check
+from KennedyMusic.helpers.channelmusic import get_chat_id
+from KennedyMusic.helpers.dbtools import delcmd_is_on, delcmd_off, delcmd_on, handle_user_status
+from KennedyMusic.helpers.decorators import authorized_users_only, errors
+from KennedyMusic.helpers.filters import command, other_filters
 from pyrogram import Client, filters
 from pyrogram.types import (
     CallbackQuery,
