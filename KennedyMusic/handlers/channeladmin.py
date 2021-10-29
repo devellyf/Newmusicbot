@@ -1,13 +1,13 @@
 from asyncio.queues import QueueEmpty
-from config import que
+from KennedyMusic.config import que
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from cache.admins import set
-from helpers.channelmusic import get_chat_id
-from helpers.decorators import authorized_users_only, errors
-from helpers.filters import command, other_filters
-from callsmusic import callsmusic
+from KennedyMusic.cache.admins import set
+from KennedyMusic.helpers.channelmusic import get_chat_id
+from KennedyMusic.helpers.decorators import authorized_users_only, errors
+from KennedyMusic.helpers.filters import command, other_filters
+from KennedyMusic.callsmusic import callsmusic
 
 
 @Client.on_message(filters.command(["channelpause","cpause"]) & filters.group & ~filters.edited)
