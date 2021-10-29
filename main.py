@@ -14,7 +14,7 @@ bot = Bot(
     API_ID,
     API_HASH,
     bot_token=BOT_TOKEN,
-    plugins=dict(root="handlers")
+    plugins=dict(root="KennedyMusic/handlers")
 )
 
 print("[INFO]: YOUR MUSIC BOT STARTED!")
