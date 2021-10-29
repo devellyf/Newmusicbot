@@ -10,10 +10,6 @@
             "description": "fill with string Pyogram (P)",
             "required": true
         },
-        "ARQ_API_KEY": {
-            "description": "For lyric and quotly modules, get on @ARQRobot",
-            "required": true
-        },
         "BOT_TOKEN": {
             "description": "Your bot token from @BotFather",
             "required": true
