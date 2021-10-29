@@ -1,9 +1,9 @@
 import asyncio
 from pyrogram import Client
-from config import SUDO_USERS, PMPERMIT, OWNER_NAME, BOT_USERNAME, BOT_NAME, UPDATES_CHANNEL, GROUP_SUPPORT
+from KennedyMusic.config import SUDO_USERS, PMPERMIT, OWNER_NAME, BOT_USERNAME, BOT_NAME, UPDATES_CHANNEL, GROUP_SUPPORT
 from pyrogram import filters
 from pyrogram.types import Message
-from callsmusic.callsmusic import client as USER
+from KennedyMusic.callsmusic.callsmusic import client as USER
 
 
 PMSET =True
@@ -21,7 +21,6 @@ async def pmPermit(client: USER, message: Message):
             return
 
     
-
 @Client.on_message(filters.command(["/pmpermit"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
