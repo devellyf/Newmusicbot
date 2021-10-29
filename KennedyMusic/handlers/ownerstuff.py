@@ -46,7 +46,7 @@ from pymongo import MongoClient
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from config import (
+from KennedyMusic.config import (
     HEROKU_API_KEY,
     HEROKU_APP_NAME,
     HEROKU_URL,
@@ -57,11 +57,11 @@ from config import (
     DATABASE_URL,
     BOT_USERNAME,
 )
-from helpers.database import db
-from helpers.dbtools import main_broadcast_handler
-from handlers.song import get_text, humanbytes
-from helpers.filters import command
-from helpers.decorators import sudo_users_only
+from KennedyMusic.helpers.database import db
+from KennedyMusic.helpers.dbtools import main_broadcast_handler
+from KennedyMusic.handlers.song import get_text, humanbytes
+from KennedyMusic.helpers.filters import command
+from KennedyMusic.helpers.decorators import sudo_users_only
 
 
 users_db = MongoClient(DATABASE_URL)['users']
@@ -95,7 +95,7 @@ async def stats(_, message: Message):
     disk_usage = psutil.disk_usage("/").percent
     total_users = await db.total_users_count()
     await message.reply_text(
-        text=f"**📊 stats of [{BOT_NAME}](https://t.me/{BOT_USERNAME})** \n\n**💾 disk usage:** \n » **disk space:** `{totals}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`\n» 👤 {total}` users, across `{total_}` groups",
+        text=f"**📊 stats of [{BOT_NAME}](https://t.me/{BOT_USERNAME})** \n\n**💾 disk usage:** \n » **disk space:** `{totals}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`\n» 👤 `{total}` users, across `{total_}` groups",
         disable_web_page_preview=True,
         parse_mode="Markdown",
         quote=True,
