@@ -94,7 +94,7 @@ async def cbstart(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbabout"))
 async def cbabout(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""<b>❓ **About  [{bn}](https://t.me/{BOT_USERNAME})**</b> 
+        f"""<b>❓ **About  {bn}**</b> 
 
 ➠ **A powerfull bot for playing music for groups!
 
@@ -103,10 +103,6 @@ async def cbabout(_, query: CallbackQuery):
 ➠ Using Python 3.9.7
 
 ➠ Can play and download music or videos from YouTube
-
-➠ I can make you happy
-
-➠ For more info click /help
 
 __{bn} licensed under the GNU General Public License v.3.0__
 
