@@ -34,7 +34,7 @@ The easy way to host this bot, deploy to Heroku
 - pip3 install -U -r requirements.txt
 - cp example.env .env #Use vim to edit ENV
 - vim .env #Fill up your ENVs ( Steps press i to enter in insert mode then edit the file. Press Esc to exit the editing mode then type :wq! and press Enter key to save the file.)
-- python3 KennedyMusic # Run the bot
+- python3 main.py # Run the bot
 ```
 
 ### Credits 🕊️
