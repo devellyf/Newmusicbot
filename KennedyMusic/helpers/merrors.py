@@ -5,7 +5,7 @@ from functools import wraps
 from pyrogram import Client
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
-from config import LOG_CHANNEL
+from KennedyMusic.config import LOG_CHANNEL
 
 
 def split_limits(text):
