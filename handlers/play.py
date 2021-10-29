@@ -55,7 +55,7 @@ def transcode(filename):
     ).overwrite_output().run() 
     os.remove(filename)
 
-# Convert seconds to mm:ss
+
 def convert_seconds(seconds):
     seconds = seconds % (24 * 3600)
     seconds %= 3600
@@ -64,13 +64,11 @@ def convert_seconds(seconds):
     return "%02d:%02d" % (minutes, seconds)
 
 
-# Convert hh:mm:ss to seconds
 def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-# Change image size
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
@@ -96,7 +94,7 @@ async def generate_cover(title, thumbnail, ctitle):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/WigendaTypewrite.ttf", 46)
+    font = ImageFont.truetype("etc/Roboto-Light.ttf", 47)
     draw.text((30, 543), f"Playing on {ctitle[:10]} ...", (0, 0, 0), font=font)
     font = ImageFont.truetype("etc/Roboto-Medium.ttf", 75)
     draw.text((30, 615),
