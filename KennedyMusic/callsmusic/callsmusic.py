@@ -1,7 +1,7 @@
 from pyrogram import Client
 from pytgcalls import PyTgCalls
 
-from config import API_HASH, API_ID, SESSION_NAME
+from KennedyMusic.config import API_HASH, API_ID, SESSION_NAME
 
 from . import queues
 
