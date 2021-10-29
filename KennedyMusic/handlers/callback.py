@@ -24,10 +24,10 @@ from time import time
 from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
-from helpers.decorators import authorized_users_only
-from config import ALIVE_EMOJI as alv
-from config import BOT_NAME as bn, BOT_IMG, BOT_USERNAME, OWNER_NAME, GROUP_SUPPORT, UPDATES_CHANNEL, ASSISTANT_NAME, UPSTREAM_REPO
-from handlers.play import cb_admin_check
+from KennedyMusic.helpers.decorators import authorized_users_only
+from KennedyMusic.config import ALIVE_EMOJI as alv
+from KennedyMusic.config import BOT_NAME as bn, BOT_IMG, BOT_USERNAME, OWNER_NAME, GROUP_SUPPORT, UPDATES_CHANNEL, ASSISTANT_NAME, UPSTREAM_REPO
+from KennedyMusic.handlers.play import cb_admin_check
 
 
 START_TIME = datetime.utcnow()
@@ -135,20 +135,14 @@ async def cbhelp(_, query: CallbackQuery):
             [
                 [
                     InlineKeyboardButton(
-                        "📚 Basic Cmd", callback_data="cbbasic"
-                    )
-                ],
-                [
+                        "📚 Basic Cmd", callback_data="cbbasic"),
                     InlineKeyboardButton(
                         "📘 Admin Cmd", callback_data="cbadmin"
-                    ),
-                    InlineKeyboardButton(
-                        "📗 Sudo Cmd", callback_data="cbsudo"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "📔 Fun Cmd", callback_data="cbfun"),
+                        "📗 Sudo Cmd", callback_data="cbsudo"),
                     InlineKeyboardButton(
                         "📒 Ownertools", callback_data="cbowner"
                     ) 
@@ -176,10 +170,6 @@ async def cbbasic(_, query: CallbackQuery):
 /search (title) - search for music from youtube in detail
 /saavn (title) - download music from saavn
 /video (title) - download music from youtube in detail
-/lyric (title) - search for lyrics
-/shazam (reply audio) - for identifying song name
-/q (reply text) - to make a quotes sticker
-/id - to show your id or chat id
 [ MORE ]
 /alive - check alive bot
 /start - starting bot
@@ -274,36 +264,10 @@ if using heroku
     )
 
 
-@Client.on_callback_query(filters.regex("cbfun"))
-async def cbfun(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""<b>{alv} **Command fun**
-
-**/chika - check it yourself
-/wibu - check it yourself
-/asupan - check yourself
-/truth - check yourself
-/dare - check it yourself
-/q - to make quotes text
-/paste - pasting your text or document to pastebin into photo
-
-💡 Bot by @{OWNER_NAME}**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🔙 Back", callback_data="cbhelp"
-                    )
-                ]
-            ]
-        )
-    )
-
-
 @Client.on_callback_query(filters.regex("cbguide"))
 async def cbguide(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**HOW TO USE THIS BOTT :**
+        f"""**HOW TO USE THIS BOT :**
 
 **1.) First, add to your group.
 2.) Then make admin with all permissions except anonymous admin.
@@ -333,7 +297,7 @@ async def cbhplay(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""How to play music on {bn} {alv}
 
-• `/play (query)` - for playing music via youtube
+• `/play (query or reply audio)` - for playing music via youtube
 • `/ytp (query)` - play music directly from youtube
 
 🔔 Updates channel [Click here](https://t.me/{UPDATES_CHANNEL})""",
