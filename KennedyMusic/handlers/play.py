@@ -225,7 +225,7 @@ async def hfmm(_, message):
             return
         DISABLED_GROUPS.remove(message.chat.id)
         await lel.edit(
-            f"✅ **{message.from_user.mention()}** turn on musicplayer on **{message.chat.title}**"
+            f"✅ **{message.from_user.mention()}** turn on musicplayer for user in **{message.chat.title}**"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
@@ -236,7 +236,7 @@ async def hfmm(_, message):
             return
         DISABLED_GROUPS.append(message.chat.id)
         await lel.edit(
-            f"⛔ **{message.from_user.mention()}** turn off musicplayer on **{message.chat.title}**"
+            f"⛔ **{message.from_user.mention()}** turn off musicplayer for user in **{message.chat.title}**"
         )
     else:
         await message.reply_text(
@@ -471,6 +471,7 @@ async def play(_, message: Message):
     global que
     global useer
     if message.chat.id in DISABLED_GROUPS:
+    await message.reply(f"⛔ Musicplayer in **{message.chat.title}** is off.\n\n» Ask admin to turn on the musicplayer.")
         return
     lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
@@ -858,6 +859,8 @@ async def lol_cb(b, cb):
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
+    await message.reply(f"⛔ Musicplayer in **{message.chat.title}** is off.\n\n» Ask admin to turn on the musicplayer.")
+        return
         return
     lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
