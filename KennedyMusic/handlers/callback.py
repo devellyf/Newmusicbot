@@ -313,7 +313,7 @@ async def cbhplay(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbplayback"))
 async def cbplayback(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**❌ Invalid syntax, i can't find something.**
+        f"""**💭 Invalid syntax, i can't find something.**
 
 » Try read on button **Command** to know how to play.""", 
         reply_markup=InlineKeyboardMarkup(
