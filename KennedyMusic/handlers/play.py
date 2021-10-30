@@ -472,7 +472,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔎 **Processing** 🔎")
+    lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -859,7 +859,7 @@ async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔎 **Searching** 🔎")
+    lel = await message.reply("🔎 **Searching**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
