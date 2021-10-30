@@ -83,7 +83,7 @@
         "BG_IMAGE": {
             "description": "For background image if you playing",
             "required": false,
-            "value": "https://telegra.ph/file/35f1a995c064bcd8e06fc.png"
+            "value": "https://telegra.ph/file/017de119883a2dac16264.png"
         },
         "ALIVE_EMOJI": {
             "description": "for emoji in /alive command",
@@ -93,7 +93,7 @@
         "OWNER_NAME": {
             "description": "Fill with your username account without @",
             "required": false,
-            "value": "exgothboi"
+            "value": "xxskfi"
         },
         "API_ID": {
             "description": "APP ID from my.telegram.org",
