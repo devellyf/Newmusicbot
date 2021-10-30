@@ -682,14 +682,14 @@ async def play(_, message: Message):
                 await lel.delete()
                 await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
-                caption="😕 **Invalid Syntax try to read the help on button bellow!**",  
+                caption="💭 Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.",  
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                            InlineKeyboardButton("Group Support", url=f"https://t.me/{GROUP_SUPPORT}"),
                         ],
                         [
-                           InlineKeyboardButton("See Command", callback_data="cbhplay"),
+                           InlineKeyboardButton("Command", callback_data="cbhplay"),
                         ],
                         [
                            InlineKeyboardButton("🗑️ Close", callback_data="close"),
@@ -940,14 +940,14 @@ async def ytplay(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
         photo=f"{THUMB_IMG}", 
-        caption="😕 **Invalid Syntax try to read the help on button below!**", 
+        caption="💭 Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.", 
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                    InlineKeyboardButton("Group Support", url=f"https://t.me/{GROUP_SUPPORT}"),
                 ],
                 [
-                   InlineKeyboardButton("See Command", callback_data="cbhplay"),
+                   InlineKeyboardButton("Command", callback_data="cbhplay"),
                 ],
                 [
                    InlineKeyboardButton("🗑️ Close", callback_data="close"),
