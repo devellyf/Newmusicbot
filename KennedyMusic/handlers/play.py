@@ -682,7 +682,7 @@ async def play(_, message: Message):
                 await lel.delete()
                 await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
-                caption="💭 Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.",  
+                caption="💭 **Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.",  
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -940,7 +940,7 @@ async def ytplay(_, message: Message):
         await lel.delete()
         await _.send_photo(chid,
         photo=f"{THUMB_IMG}", 
-        caption="💭 Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.", 
+        caption="💭 **Invalid syntax, i can't find something.**\n\n» Try read on button **Command** to know how to play.", 
         reply_markup=InlineKeyboardMarkup(
             [
                 [
