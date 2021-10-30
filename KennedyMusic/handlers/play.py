@@ -411,7 +411,7 @@ async def m_cb(b, cb):
                     InlineKeyboardButton("⏭", "skip"),
                 ],
                 [
-                    InlineKeyboardButton("📖 Playlist", "playlist"),
+                    InlineKeyboardButton("📝 Playlist", "playlist"),
                 ],
                 [InlineKeyboardButton("🗑 Close", "cls")],
             ]
@@ -567,8 +567,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("• menu ", callback_data="menu"),
-                    InlineKeyboardButton("close •", callback_data="close"),
+                    InlineKeyboardButton("🛠️ Menu ", callback_data="menu"),
+                    InlineKeyboardButton("🗑️ Close", callback_data="close"),
                 ]
             ]
         )
@@ -615,8 +615,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("• menu ", callback_data="menu"),
-                InlineKeyboardButton("close •", callback_data="close"),
+                InlineKeyboardButton("🛠️ Menu ", callback_data="menu"),
+                InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ]
          ]
         )
@@ -706,8 +706,8 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("• menu ", callback_data="menu"),
-                InlineKeyboardButton("close •", callback_data="close"),
+                InlineKeyboardButton("🛠️ Menu ", callback_data="menu"),
+                InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ],
         ]
     )
@@ -807,8 +807,8 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("• menu ", callback_data="menu"),
-            InlineKeyboardButton("close •", callback_data="close"),
+            InlineKeyboardButton("🛠️ Menu ", callback_data="menu"),
+            InlineKeyboardButton("🗑️ Close", callback_data="close"),
         ]
      ]
     )
@@ -968,8 +968,8 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("• menu", callback_data="menu"),
-            InlineKeyboardButton("close •", callback_data="close"),
+            InlineKeyboardButton("🛠️ Menu", callback_data="menu"),
+            InlineKeyboardButton("🗑️ Close", callback_data="close"),
         ]
      ]
     )
