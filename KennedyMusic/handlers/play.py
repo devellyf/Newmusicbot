@@ -148,13 +148,13 @@ async def playlist(client, message):
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.pytgcalls.active_calls:
-        stats = "⚙️ Settings from **{}**".format(chat.title)
+        stats = "Settings from **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "🎚️ Volume: {}%\n".format(vol)
-            stats += "🎼 Song in queue: `{}`\n".format(len(que))
-            stats += "💡 Now playing: **{}**\n".format(queue[0][0])
-            stats += "🎧 Requested by: {}".format(queue[0][1].mention)
+            stats += "Volume: {}%\n".format(vol)
+            stats += "Song in queue: `{}`\n".format(len(que))
+            stats += "Now playing: **{}**\n".format(queue[0][0])
+            stats += "Requested by: {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -564,8 +564,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                    InlineKeyboardButton("🗑️ Close", callback_data="close"),
+                    InlineKeyboardButton("• menu ", callback_data="menu"),
+                    InlineKeyboardButton("close •", callback_data="close"),
                 ]
             ]
         )
@@ -612,8 +612,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                InlineKeyboardButton("🗑️ Close", callback_data="close"),
+                InlineKeyboardButton("• menu ", callback_data="menu"),
+                InlineKeyboardButton("close •", callback_data="close"),
             ]
          ]
         )
@@ -703,8 +703,8 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-                InlineKeyboardButton("🗑️ Close", callback_data="close"),
+                InlineKeyboardButton("• menu ", callback_data="menu"),
+                InlineKeyboardButton("close •", callback_data="close"),
             ],
         ]
     )
@@ -804,8 +804,8 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🎚️ Menu ", callback_data="menu"),
-            InlineKeyboardButton("🗑️ Close", callback_data="close"),
+            InlineKeyboardButton("• menu ", callback_data="menu"),
+            InlineKeyboardButton("close •", callback_data="close"),
         ]
      ]
     )
@@ -962,8 +962,8 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
      [
         [
-            InlineKeyboardButton("🎚️ Menu", callback_data="menu"),
-            InlineKeyboardButton("🗑️ Close", callback_data="close"),
+            InlineKeyboardButton("• menu", callback_data="menu"),
+            InlineKeyboardButton("close •", callback_data="close"),
         ]
      ]
     )
