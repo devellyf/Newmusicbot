@@ -39,7 +39,7 @@ def cb_admin_check(func: Callable) -> Callable:
         if cb.from_user.id in admemes:
             return await func(client, cb)
         else:
-            await cb.answer("💡 only admin can tap this button !", show_alert=True)
+            await cb.answer("You don't have permission to do that\n\n» ❌ __Only admin can tap this button__", show_alert=True)
             return
 
     return decorator                                                                       
@@ -148,13 +148,13 @@ async def playlist(client, message):
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.pytgcalls.active_calls:
-        stats = "Settings from **{}**".format(chat.title)
+        stats = "⚙️ Settings from **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "Volume: {}%\n".format(vol)
-            stats += "Song in queue: `{}`\n".format(len(que))
-            stats += "Now playing: **{}**\n".format(queue[0][0])
-            stats += "Requested by: {}".format(queue[0][1].mention)
+            stats += "• Volume: {}%\n".format(vol)
+            stats += "• Song in queue: `{}`\n".format(len(que))
+            stats += "• Now playing: **{}**\n".format(queue[0][0])
+            stats += "• Requested by: {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -173,7 +173,7 @@ def r_ply(type_):
                 InlineKeyboardButton("⏭", "skip")
             ],
             [
-                InlineKeyboardButton("📖 Playlist", "playlist"),
+                InlineKeyboardButton("📝 Playlist", "playlist"),
             ],
             [       
                 InlineKeyboardButton("🗑 Close", "cls")
@@ -219,24 +219,24 @@ async def hfmm(_, message):
     status = message.text.split(None, 1)[1]
     message.chat.id
     if status == "ON" or status == "on" or status == "On":
-        lel = await message.reply("`processing...`")
+        lel = await message.reply("`Turning on...`")
         if not message.chat.id in DISABLED_GROUPS:
-            await lel.edit("**music player already activated.**")
+            await lel.edit("✅ **musicplayer already activated.**")
             return
         DISABLED_GROUPS.remove(message.chat.id)
         await lel.edit(
-            f"💡 **music player has been activated in this chat.**\n\n☁️ `{message.chat.id}`"
+            f"✅ **{message.from_user.mention()}** turn on musicplayer on **{message.chat.title}**"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
-        lel = await message.reply("`processing...`")
+        lel = await message.reply("`Turning off...`")
         
         if message.chat.id in DISABLED_GROUPS:
-            await lel.edit("**music player already deactivated.**")
+            await lel.edit("⛔ **musicplayer already deactivated.**")
             return
         DISABLED_GROUPS.append(message.chat.id)
         await lel.edit(
-            f"💡 **music player has been deactivated in this chat.**\n\n☁️ `{message.chat.id}`"
+            f"⛔ **{message.from_user.mention()}** turn off musicplayer on **{message.chat.title}**"
         )
     else:
         await message.reply_text(
