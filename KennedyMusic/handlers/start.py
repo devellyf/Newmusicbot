@@ -58,7 +58,7 @@ async def start_(client: Client, message: Message):
 
 **💭 [{BOT_NAME}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
 
-💡 Find out all the **Bot's commands** and how they work by clicking on the **» 📚 Commands** button!""",
+💡 Find out all the **Bot's commands** and how they work by clicking on the **» Commands** button!""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
@@ -66,19 +66,19 @@ async def start_(client: Client, message: Message):
                         "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],[
                     InlineKeyboardButton(
-                        "📚 Command​​", callback_data="cbhelp"
+                        "Command​​", callback_data="cbhelp"
                     ),
                     InlineKeyboardButton(
-                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
+                        "Donate", url=f"https://t.me/{OWNER_NAME}")
                 ],[
                     InlineKeyboardButton(
-                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                        "Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
                 ],[
                     InlineKeyboardButton(
-                        "🌐 Source Code", url=f"{UPSTREAM_REPO}")
+                        "Source Code", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
                         "❔ About me​​", callback_data="cbabout"
@@ -122,7 +122,7 @@ async def help(client: Client, message: Message):
 
 **Please press the button below to read the explanation and see the list of available commands !**
 
-💡 Bot by @{OWNER_NAME}""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -158,7 +158,7 @@ async def get_uptime(client: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        f"🎵 {BOT_NAME} status:\n"
+        f"🤖 {BOT_NAME} status:\n"
         f"• **uptime:** `{uptime}`\n"
         f"• **start time:** `{START_TIME_ISO}`"
     )
