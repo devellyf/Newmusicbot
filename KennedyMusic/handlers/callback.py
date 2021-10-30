@@ -59,7 +59,7 @@ async def cbstart(_, query: CallbackQuery):
 
 **💭 [{bn}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
 
-💡 Find out all the **Bot's commands** and how they work by clicking on the **» 📚 Commands** button!""",
+💡 Find out all the **Bot's commands** and how they work by clicking on the **» Commands** button!""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
@@ -67,19 +67,19 @@ async def cbstart(_, query: CallbackQuery):
                         "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],[
                     InlineKeyboardButton(
-                        "📚 Command​​", callback_data="cbhelp"
+                        "Command​​", callback_data="cbhelp"
                     ),
                     InlineKeyboardButton(
-                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
+                        "Donate", url=f"https://t.me/{OWNER_NAME}")
                 ],[
                     InlineKeyboardButton(
-                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                        "Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
                 ],[
                     InlineKeyboardButton(
-                        "🌐 Source Code", url=f"{UPSTREAM_REPO}")
+                        "Source Code", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
                         "❔ About me​​", callback_data="cbabout"
@@ -130,21 +130,21 @@ async def cbhelp(_, query: CallbackQuery):
 
 **In this menu you can open several available command menus, in each command menu there is also a brief explanation of each command**
 
-💡 Bot by @{OWNER_NAME}""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "📚 Basic Cmd", callback_data="cbbasic"),
+                        "Basic Command", callback_data="cbbasic"),
                     InlineKeyboardButton(
-                        "📘 Admin Cmd", callback_data="cbadmin"
+                        "Admin Command", callback_data="cbadmin"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "📗 Sudo Cmd", callback_data="cbsudo"),
+                        "Sudo Command", callback_data="cbsudo"),
                     InlineKeyboardButton(
-                        "📒 Ownertools", callback_data="cbowner"
+                        "Ownertools", callback_data="cbowner"
                     ) 
                 ],
                 [
@@ -163,17 +163,17 @@ async def cbbasic(_, query: CallbackQuery):
         f"""<b>{alv} basic commands for bots
 
 [GROUP SETTINGS]
-/play (title / reply to audio) - play music via youtube
-/ytp (title) - play music live
-/playlist - view queue list
-/song (title) - download music from youtube
-/search (title) - search for music from youtube in detail
-/video (title) - download music from youtube in detail
+ • `/play (title / reply to audio)` - play music via youtube
+ • `/ytp (title)` - play music live
+ • `/playlist` - view queue list
+ • `/song (title)` - download music from youtube
+ • `/search (title)` - search for music from youtube in detail
+ • `/video (title)` - download music from youtube in detail
 [ MORE ]
-/alive - check alive bot
-/start - starting bot
+ • `/alive` - check alive bot
+ • `/start` - starting bot
 
-💡 Bot by @{OWNER_NAME}""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -189,17 +189,17 @@ async def cbbasic(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbadmin"))
 async def cbadmin(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""<b>{alv} command for group admin
+        f"""<b>{alv} command for group admin only!
 
-/player - view playback status
-/pause - pauses playing music
-/resume - resume paused music
-/skip - skip to next song
-/end - mute the music
-/userbotjoin - invite assistant to join the group
-/musicplayer (on / off) - turn on / off the music player in your group
+ • `/player` - view playback status
+ • `/pause` - pauses playing music
+ • `/resume` - resume paused music
+ • `/skip` - skip to next song
+ • `/end` - mute the music
+ • `/userbotjoin` - invite assistant to join the group
+ • `/musicplayer (on / off)` - turn on / off the music player in your group
 
-💡 Bot by @{OWNER_NAME}""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -215,17 +215,17 @@ async def cbadmin(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbowner"))
 async def cbowner(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""🤴 **here is the owner commands**
+        f"""**here is the owner commands only**
 
-/stats - show the bot statistic
-/broadcast (reply to message) - send a broadcast message from bot
-/block (user id - duration - reason) - block user for using your bot
-/unblock (user id - reason) - unblock user you blocked for using your bot
-/blocklist - show you the list of user was blocked for using your bot
+ • `/stats` - show the bot statistic
+ • `/broadcast` (reply to message) - send a broadcast message from bot
+ • `/block` (user id - duration - reason) - block user for using your bot
+ • `/unblock` (user id - reason) - unblock user you blocked for using your bot
+ • `/blocklist` - show you the list of user was blocked for using your bot
 
 📝 note: all commands owned by this bot can be executed by the owner of the bot without any exceptions.
 
-💡 Bot by @{OWNER_NAME}""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
         ),
@@ -237,20 +237,20 @@ async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""<b>{alv} **command for sudo**
 
-**/userbotleaveall - remove assistant from all groups
-/gcast - send global messages via assistant
-/rmd - delete downloaded files
-/uptime - for see the uptime and start time bot launched
-/sysinfo - to see system bot info
-/eval and /sh - running evaluator or shell
+ • `/userbotleaveall - remove assistant from all groups
+ • `/gcast` - send global messages via assistant
+ • `/rmd` - delete downloaded files
+ • `/uptime` - for see the uptime and start time bot launched
+ • `/sysinfo` - to see system bot info
+ • `/eval` (cmd) and `/sh` (cmd) - running evaluator or shell
 if using heroku
-/usage - for check you dyno heroku
-/update - for build update your bot
-/restart - restart/reboot your bot
-/setvar (var) (value) - to update your value variable on heroku
-/delvar (var) - to delete your var on heroku.
+ • `/usage` - for check you dyno heroku
+ • `/update` - for build update your bot
+ • `/restart` - restart/reboot your bot
+ • `/setvar` (var) (value) - to update your value variable on heroku
+ • `/delvar` (var) - to delete your var on heroku.
 
-💡 Bot by @{OWNER_NAME}**""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -268,12 +268,12 @@ async def cbguide(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**HOW TO USE THIS BOT :**
 
-**1.) First, add to your group.
+1.) First, add to your group.
 2.) Then make admin with all permissions except anonymous admin.
 3.) Add @{ASSISTANT_NAME} to your group or type `/userbotjoin` to invite assistant.
 4.) Turn on voice chat first before playing music.
 
-💡 Bot by @{OWNER_NAME}**""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -313,14 +313,17 @@ async def cbhplay(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbplayback"))
 async def cbplayback(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**😕 Hey !! Give me something to play and searching on youtube.**""", 
+        f"""**❌ Invalid syntax, i can't find something.**
+
+
+» Try read on button **Command** to know how to play.""", 
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                    InlineKeyboardButton("Group Support", url=f"https://t.me/{GROUP_SUPPORT}"),
                 ],
                 [
-                   InlineKeyboardButton("See Command", callback_data="cbhplay"),
+                   InlineKeyboardButton("Command", callback_data="cbhplay"),
                 ],
                 [
                    InlineKeyboardButton("🗑️ Close", callback_data="closed"),
