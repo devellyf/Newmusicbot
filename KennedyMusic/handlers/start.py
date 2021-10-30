@@ -58,27 +58,27 @@ async def start_(client: Client, message: Message):
 
 **💭 [{BOT_NAME}](https://t.me/{GROUP_SUPPORT}) allows you to play music on groups through the new Telegram's voice chats!**
 
-💡 Find out all the **Bot's commands** and how they work by clicking on the **» Commands** button!""",
+💡 Find out all the **Bot's commands** and how they work by clicking on the **» ⚙️ Commands** button!""",
         reply_markup=InlineKeyboardMarkup(
-            [ 
+                        [ 
                 [
                     InlineKeyboardButton(
                         "➕ Add me to your group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],[
                     InlineKeyboardButton(
-                        "Command​​", callback_data="cbhelp"
+                        "⚙️ Command​​", callback_data="cbhelp"
                     ),
                     InlineKeyboardButton(
-                        "Donate", url=f"https://t.me/{OWNER_NAME}")
+                        "❤️ Donate", url=f"https://t.me/{OWNER_NAME}")
                 ],[
                     InlineKeyboardButton(
-                        "Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "👥 Official Group​​", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                        "📮 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
                 ],[
                     InlineKeyboardButton(
-                        "Source Code", url=f"{UPSTREAM_REPO}")
+                        "🛠️ Source Code 🛠️", url=f"{UPSTREAM_REPO}")
                 ],[
                     InlineKeyboardButton(
                         "❔ About me​​", callback_data="cbabout"
@@ -161,4 +161,20 @@ async def get_uptime(client: Client, message: Message):
         f"🤖 {BOT_NAME} status:\n"
         f"• **uptime:** `{uptime}`\n"
         f"• **start time:** `{START_TIME_ISO}`"
+    )
+
+
+@Client.on_message(command(["donate", f"donate@{BOT_USERNAME}"]) & ~filters.edited)
+async def donate(client: Client, message: Message):
+    await message.reply_text(
+        f"__Hi **{message.from.user.mention()}**, it's great if you want to support this bot 😇. Tap the button below to continue__",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="Continue 🔰", url=f"https://t.me/{OWNER_NAME}"
+                    )
+                ]
+            ]
+        )
     )
