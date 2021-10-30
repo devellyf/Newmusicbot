@@ -12,7 +12,7 @@
 - [PyTgCalls](https://github.com/pytgcalls/pytgcalls)
 - [MongoDB](https://cloud.mongodb.com/)
 
-### Get STRING_SESSION from here:
+### Get SESSION_NAME from here:
 
 [![GenerateString](https://img.shields.io/badge/repl.it-generateString-blue)](https://replit.com/@KennedyProject/String-Session#main.py)
 
