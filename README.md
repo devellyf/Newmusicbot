@@ -1,6 +1,8 @@
-<p align="center"><a href="https://t.me/emikosupport"><img src="https://telegra.ph/file/2b6036786291fdc0f884f.png" width="340"></a></p>
+<p align="center"><b>🎵 KENNEDY X MUSIC 🎵</b></p>
 
 <p align="center"><b> KennedyXMusic is a Music bot for playing music on telegram voice chat group with extra features </b></p>
+
+<p align="center"><a href="https://t.me/emikosupport"><img src="https://telegra.ph/file/d8f2eadbe79a4c949bb93.jpg" width="340"></a></p>
 
 <h3>Requirements</h3>
 
