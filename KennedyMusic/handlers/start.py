@@ -167,7 +167,7 @@ async def get_uptime(client: Client, message: Message):
 @Client.on_message(command(["donate", f"donate@{BOT_USERNAME}"]) & ~filters.edited)
 async def donate(client: Client, message: Message):
     await message.reply_text(
-        f"__Hi **{message.from.user.mention()}**, it's great if you want to support this bot 😇. Tap the button below to continue__",
+        f"__Hi **{message.from_user.mention()}**, it's great if you want to support this bot 😇. Tap the button below to continue__",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
