@@ -11,6 +11,7 @@
 - Python 3.8+ or Higher
 - [PyTgCalls](https://github.com/pytgcalls/pytgcalls)
 - [MongoDB](https://cloud.mongodb.com/)
+- Seccond account for the assistant
 
 ### Get SESSION_NAME from here:
 
