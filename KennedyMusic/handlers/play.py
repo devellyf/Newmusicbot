@@ -5,7 +5,7 @@ from asyncio.queues import QueueEmpty
 
 import aiofiles
 import aiohttp
-import converter
+from KennedyMusic.converter.converter import convert
 import ffmpeg
 import requests
 from KennedyMusic.cache.admins import admins as a
@@ -596,7 +596,7 @@ async def play(_, message: Message):
         duration = convert_seconds(audio.duration)
         message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
-        file_path = await converter.convert(
+        file_path = await convert(
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name))
             else file_name
@@ -636,7 +636,7 @@ async def play(_, message: Message):
         )
         message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
-        file_path = await converter.convert(youtube.download(url))
+        file_path = await convert(youtube.download(url))
     else:
         query = ""
         for i in message.command[1:]:
@@ -732,7 +732,7 @@ async def play(_, message: Message):
             )
             message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
-            file_path = await converter.convert(youtube.download(url))
+            file_path = await convert(youtube.download(url))
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
         if chat_id in ACTV_CALLS:
@@ -849,7 +849,7 @@ async def lol_cb(b, cb):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
         if chat_id in ACTV_CALLS:
@@ -1010,7 +1010,7 @@ async def ytplay(_, message: Message):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     ACTV_CALLS = []
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
