@@ -18,7 +18,6 @@ from pyrogram.types import (
     Message,
 )
 
-
 @Client.on_message(command(["reload", f"reload@{BOT_USERNAME}"]))
 @authorized_users_only
 async def update_admin(client, message):
@@ -139,7 +138,6 @@ async def deautenticate(client, message):
         await message.reply("✅ user already deauthorized!")
 
 
-# this is a anti cmd feature
 @Client.on_message(command(["delcmd", f"delcmd@{BOT_USERNAME}"]) & other_filters)
 @authorized_users_only
 async def delcmdc(_, message: Message):
