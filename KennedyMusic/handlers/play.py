@@ -12,7 +12,7 @@ from KennedyMusic.cache.admins import admins as a
 from KennedyMusic.callsmusic import callsmusic
 from KennedyMusic.callsmusic.callsmusic import client as USER
 from KennedyMusic.callsmusic.queues import queues
-from config import (
+from KennedyMusic.config import (
     ASSISTANT_NAME,
     BOT_NAME,
     BOT_USERNAME,
@@ -28,7 +28,7 @@ from KennedyMusic.helpers.channelmusic import get_chat_id
 from KennedyMusic.helpers.chattitle import CHAT_TITLE
 from KennedyMusic.helpers.decorators import authorized_users_only
 from KennedyMusic.helpers.filters import command, other_filters
-from helpers.gets import get_url, get_file_name
+from KennedyMusic.helpers.gets import get_url, get_file_name
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
