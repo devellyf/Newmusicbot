@@ -1,4 +1,4 @@
-from asyncio import Queue as _queue
+from asyncio import Queue as _Queue
 from typing import Dict
 from asyncio import Queue, QueueEmpty as Empty
 
