@@ -593,7 +593,7 @@ async def play(_, message: Message):
         title = "Telegram audio"
         thumb_name = "https://telegra.ph/file/fa2cdb8a14a26950da711.png"
         thumbnail = thumb_name
-        duration = round(audio.duration / 60)
+        duration = convert_seconds(audio.duration)
         message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
         file_path = await converter.convert(
