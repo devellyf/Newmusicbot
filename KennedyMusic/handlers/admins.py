@@ -150,7 +150,7 @@ async def deautenticate(client, message):
 async def delcmdc(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text(
-            "read the /help message to know how to use this command"
+            "read the **⚙️ help** message to know how to use this command"
         )
     status = message.text.split(None, 1)[1].strip()
     status = status.lower()
@@ -165,5 +165,5 @@ async def delcmdc(_, message: Message):
         await message.reply_text("🔴 disabled successfully")
     else:
         await message.reply_text(
-            "read the /help message to know how to use this command"
+            "read the **⚙️ help** message to know how to use this command"
         )
