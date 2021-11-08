@@ -1,7 +1,8 @@
 from . import queues
 from pyrogram import Client
 from pytgcalls import PyTgCalls
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
+from pytgcalls.types.input_stream InputStream
+from pytgcalls.types.input_stream import InputAudioStream
 from KennedyMusic.config import API_HASH, API_ID, SESSION_NAME
 
 
