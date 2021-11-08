@@ -8,6 +8,9 @@ import aiohttp
 from KennedyMusic.converter.converter import convert
 import ffmpeg
 import requests
+from pytgcalls import StreamType
+from pytgcalls.types.input_stream import InputAudioStream
+from pytgcalls.types.input_stream import InputStream
 from KennedyMusic.cache.admins import admins as a
 from KennedyMusic.callsmusic import callsmusic
 from KennedyMusic.callsmusic.callsmusic import client as USER
@@ -759,7 +762,17 @@ async def play(_, message: Message):
             appendable = [s_name, r_by, loc]
             qeue.append(appendable)
             try:
-                await callsmusic.pytgcalls.join_group_call(chat_id, InputAudioStream(file_path))
+                await music_on(chat_id)
+                await add_active_chat(chat_id)
+                await callsmusic.pytgcalls.join_group_call(
+                    chat_id, 
+                    InputAudioStream(
+                        InputAudioStream(
+                    file,
+                ),
+            ),
+            stream_type=StreamType().local_stream,
+        )
             except:
                 await lel.edit(
                     "😕 **voice chat not found**\n\n» please turn on the voice chat first"
@@ -881,7 +894,17 @@ async def lol_cb(b, cb):
                 loc = file_path
                 appendable = [s_name, r_by, loc]
                 qeue.append(appendable)
-                await callsmusic.pytgcalls.join_group_call(chat_id, InputAudioStream(file_path))
+                await music_on(chat_id)
+                await add_active_chat(chat_id)
+                await callsmusic.pytgcalls.join_group_call(
+                    chat_id, 
+                    InputAudioStream(
+                        InputAudioStream(
+                    file,
+                ),
+            ),
+            stream_type=StreamType().local_stream,
+        )
                 await cb.message.delete()
                 await b.send_photo(
                     chat_id,
@@ -1038,7 +1061,17 @@ async def ytplay(_, message: Message):
             appendable = [s_name, r_by, loc]
             qeue.append(appendable)
             try:
-                await callsmusic.pytgcalls.join_group_call(chat_id, InputAudioStream(file_path))
+                await music_on(chat_id)
+                await add_active_chat(chat_id)
+                await callsmusic.pytgcalls.join_group_call(
+                    chat_id, 
+                    InputAudioStream(
+                        InputAudioStream(
+                    file,
+                ),
+            ),
+            stream_type=StreamType().local_stream,
+        )
             except:
                 await lel.edit(
                     "😕 **voice chat not found**\n\n» please turn on the voice chat first"
