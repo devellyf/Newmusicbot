@@ -18,22 +18,6 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from KennedyMusic.config import BROADCAST_AS_COPY, GROUP_SUPPORT, UPDATES_CHANNEL, LOG_CHANNEL
 from KennedyMusic.helpers.database import db, dcmdb
 
-
-    ban_status = await db.get_ban_status(chat_id)
-    if ban_status["is_banned"]:
-        if (
-            datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
-        ).days > ban_status["ban_duration"]:
-            await db.remove_ban(chat_id)
-        else:
-            await cmd.reply_text(
-                f"sorry, you're banned, ask in @{GROUP_SUPPORT} if you think this was an mistake.",
-                quote=True,
-            )
-            return
-    await cmd.continue_propagation()
-
-
 # Broadcast Tools
 
 broadcast_ids = {}
