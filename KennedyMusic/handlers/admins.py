@@ -41,7 +41,7 @@ async def update_admin(client, message):
 @authorized_users_only
 async def pause(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat:
+    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         await callsmusic.pytgcalls.pause_stream(chat_id)
@@ -53,7 +53,7 @@ async def pause(_, message: Message):
 @authorized_users_only
 async def resume(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat(chat_id:
+    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
         await message.reply_text("❌ **no music is paused**")
     else:
         await callsmusic.pytgcalls.resume_stream(chat_id)
@@ -65,7 +65,7 @@ async def resume(_, message: Message):
 @authorized_users_only
 async def stop(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat:
+    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         try:
@@ -83,7 +83,7 @@ async def stop(_, message: Message):
 async def skip(_, message: Message):
     global que
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat:
+    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         queues.task_done(chat_id)
