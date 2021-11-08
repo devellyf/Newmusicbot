@@ -35,7 +35,6 @@ from KennedyMusic.helpers.gets import get_url, get_file_name
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
-from pytgcalls.types.input_stream import InputAudioStream
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
