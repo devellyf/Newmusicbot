@@ -763,13 +763,12 @@ async def play(_, message: Message):
                 await add_active_chat(chat_id)
                 await callsmusic.pytgcalls.join_group_call(
                     chat_id, 
-                    InputStream(
-                        InputAudioStream(
-                    file_path,
+                    InputAudioStream(
+                        file_path,
+                    ),
                 ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
+                stream_type=StreamType().local_stream,
+            )
             except:
                 await lel.edit(
                     "😕 **voice chat not found**\n\n» please turn on the voice chat first"
@@ -893,13 +892,12 @@ async def lol_cb(b, cb):
             await add_active_chat(chat_id)
             await callsmusic.pytgcalls.join_group_call(
                 chat_id, 
-                InputStream(
-                    InputAudioStream(
-                file_path,
+                InputAudioStream(
+                    file_path,
+                ),
             ),
-        ),
-        stream_type=StreamType().local_stream,
-    )
+            stream_type=StreamType().local_stream,
+        )
             await cb.message.delete()
             await b.send_photo(
                 chat_id,
@@ -1057,13 +1055,12 @@ async def ytplay(_, message: Message):
             await add_active_chat(chat_id)
             await callsmusic.pytgcalls.join_group_call(
                 chat_id, 
-                InputStream(
-                    InputAudioStream(
-                file_path,
+                InputAudioStream(
+                    file_path,
+                ),
             ),
-        ),
-        stream_type=StreamType().local_stream,
-    )
+            stream_type=StreamType().local_stream,
+        )
         except:
             await lel.edit(
                 "😕 **voice chat not found**\n\n» please turn on the voice chat first"
