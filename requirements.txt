@@ -1,8 +1,10 @@
-pyrogram
 tgcrypto
-py-tgcalls==0.5.5
+git+https://github.com/pyrogram/pyrogram@master
+git+https://github.com/yt-dlp/yt-dlp@master
+youtube-search-python==1.4.9
+py-tgcalls==0.8.0
+httpx==0.13.3
 python-dotenv
-youtube-search-python
 requests
 aiohttp
 aiofiles
@@ -17,8 +19,6 @@ wget
 motor
 dnspython
 speedtest-cli
-yt-dlp
 httpx==0.13.3
 heroku3
 gitpython
-pymongo
