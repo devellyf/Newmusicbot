@@ -25,7 +25,6 @@ from KennedyMusic.config import (
     UPDATES_CHANNEL,
     que,
 )
-from KennedyMusic.helpers.database import get_active_chats, is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off
 from KennedyMusic.downloaders import youtube
 from KennedyMusic.helpers.admins import get_administrators
 from KennedyMusic.helpers.channelmusic import get_chat_id
@@ -759,8 +758,6 @@ async def play(_, message: Message):
             appendable = [s_name, r_by, loc]
             qeue.append(appendable)
             try:
-                await music_on(chat_id)
-                await add_active_chat(chat_id)
                 await callsmusic.pytgcalls.join_group_call(
                     chat_id,
                     InputStream( 
@@ -889,8 +886,6 @@ async def lol_cb(b, cb):
             loc = file_path
             appendable = [s_name, r_by, loc]
             qeue.append(appendable)
-            await music_on(chat_id)
-            await add_active_chat(chat_id)
             await callsmusic.pytgcalls.join_group_call(
                 chat_id,
                 InputStream( 
@@ -1053,8 +1048,6 @@ async def ytplay(_, message: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         try:
-            await music_on(chat_id)
-            await add_active_chat(chat_id)
             await callsmusic.pytgcalls.join_group_call(
                 chat_id,
                 InputStream( 
