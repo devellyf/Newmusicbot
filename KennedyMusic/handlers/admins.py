@@ -53,7 +53,7 @@ async def pause(_, message: Message):
 @authorized_users_only
 async def resume(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not awwit callsmusic.pytgcalls.is_active_chat(chat_id:
+    if not await callsmusic.pytgcalls.is_active_chat(chat_id:
         await message.reply_text("❌ **no music is paused**")
     else:
         await callsmusic.pytgcalls.resume_stream(chat_id)
