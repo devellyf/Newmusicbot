@@ -19,11 +19,6 @@ from pyrogram.types import (
 )
 
 
-@Client.on_message()
-async def _(bot: Client, cmd: Message):
-    await handle_user_status(bot, cmd)
-
-
 @Client.on_message(command(["reload", f"reload@{BOT_USERNAME}"]))
 @authorized_users_only
 async def update_admin(client, message):
