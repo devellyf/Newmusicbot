@@ -437,10 +437,13 @@ async def m_cb(b, cb):
             else:
                 await callsmusic.pytgcalls.change_stream(
                     chet_id, 
-                    InputAudioStream(
-                        callsmusic.queues.get(chet_id)["file"],
-                    ),
-                )
+                    InputStream(
+                        InputAudioStream(
+                    file_path,
+                ),
+            ),
+            stream_type=StreamType().local_stream,
+        )
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
@@ -721,7 +724,15 @@ async def play(_, message: Message):
             await generate_cover(title, thumbnail, ctitle)
             file_path = await convert(youtube.download(url))
         if chid in callsmusic.pytgcalls.active_calls:
-            position = await queues.put(chat_id, InputAudioStream(file_path))
+            position = await queues.put(
+                           chat_id,
+                           InputStream(
+                               InputAudioStream(
+                           file_path,
+                       ),
+                   ),
+                   stream_type=StreamType().local_stream,
+               )
             qeue = que.get(chat_id)
             s_name = title
             r_by = message.from_user
@@ -748,7 +759,7 @@ async def play(_, message: Message):
                 await add_active_chat(chat_id)
                 await callsmusic.pytgcalls.join_group_call(
                     chat_id, 
-                    InputAudioStream(
+                    InputStream(
                         InputAudioStream(
                     file_path,
                 ),
