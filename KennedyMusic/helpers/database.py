@@ -3,7 +3,14 @@ from typing import Dict, List, Union
 import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
-from KennedyMusic.config import BOT_USERNAME, DATABASE_URL
+from KennedyMusic.config import DATABASE_URL
+
+MONGODB_CLI = MongoClient(DATABASE_URL)
+db = MONGODB_CLI.wbb
+dcmdb = db.handlers
+restart_stagedb = db.restart_stage
+pytgdb = db.pytg
+admindb = db.admin
 
 
 class Database:
@@ -144,12 +151,3 @@ async def music_off(chat_id: int):
     if not dis_kontol:
         return
     return await admindb.insert_one({"chat_id_toggle": chat_id})
-
-
-# Database
-db = Database(DATABASE_URL, BOT_USERNAME)
-mongo_db_lmao = MongoClient(DATABASE_URL)
-dcmdb = mongo_db_lmao.handlers
-restart_stagedb = mongo_db_lmao.restart_stage
-pytgdb = mongo_db_lmao.pytg
-admindb = mongo_db_lmao.admin
