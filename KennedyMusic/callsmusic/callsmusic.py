@@ -3,7 +3,7 @@ from pytgcalls.types import Update
 from pytgcalls import PyTgCalls
 from pytgcalls.types.input_stream import InputStream
 from pytgcalls.types.input_stream import InputAudioStream
-from KennedyMusic.queues import queues
+from KennedyMusic.callsmusic.queues import queues
 from KennedyMusic.config import API_HASH, API_ID, SESSION_NAME
 
 
