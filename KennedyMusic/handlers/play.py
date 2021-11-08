@@ -587,9 +587,13 @@ async def play(_, message: Message):
         message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
         file_path = await convert(
-            (await message.reply_to_message.download(file_name))
-            if not path.isfile(path.join("downloads", file_name))
-            else file_name
+            (
+                await message.reply_to_message.download(file_name)
+            )
+            if (
+                not path.isfile(file_name)
+            )
+            else file_name,
         )
     elif urls:
         query = toxt
