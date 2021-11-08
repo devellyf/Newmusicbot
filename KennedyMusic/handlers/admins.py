@@ -6,7 +6,6 @@ from KennedyMusic.config import BOT_USERNAME, que
 from KennedyMusic.cache.admins import admins
 from KennedyMusic.handlers.play import cb_admin_check
 from KennedyMusic.helpers.channelmusic import get_chat_id
-from KennedyMusic.helpers.database import is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off
 from KennedyMusic.helpers.dbtools import delcmd_is_on, delcmd_off, delcmd_on
 from KennedyMusic.helpers.decorators import authorized_users_only, errors
 from KennedyMusic.helpers.filters import command, other_filters
@@ -36,7 +35,7 @@ async def update_admin(client, message):
 @authorized_users_only
 async def pause(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
+    if not await callsmusic.pytgcalls.active_calls(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         await callsmusic.pytgcalls.pause_stream(chat_id)
@@ -48,7 +47,7 @@ async def pause(_, message: Message):
 @authorized_users_only
 async def resume(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
+    if not await callsmusic.pytgcalls.active_calls(chat_id):
         await message.reply_text("❌ **no music is paused**")
     else:
         await callsmusic.pytgcalls.resume_stream(chat_id)
@@ -60,7 +59,7 @@ async def resume(_, message: Message):
 @authorized_users_only
 async def stop(_, message: Message):
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
+    if not await callsmusic.pytgcalls.active_calls(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         try:
@@ -78,7 +77,7 @@ async def stop(_, message: Message):
 async def skip(_, message: Message):
     global que
     chat_id = get_chat_id(message.chat)
-    if not await callsmusic.pytgcalls.is_active_chat(chat_id):
+    if not await callsmusic.pytgcalls.active_calls(chat_id):
         await message.reply_text("❌ **no music is currently playing**")
     else:
         queues.task_done(chat_id)
