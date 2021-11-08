@@ -373,7 +373,7 @@ async def m_cb(b, cb):
 
     elif type_ == "resume":
         psn = "▶ music playback has resumed"
-        if now await callsmusic.pytgcalls.active_calls(chet_id):
+        if not await callsmusic.pytgcalls.active_calls(chet_id):
             await cb.answer(
                 "voice chat is not connected or already playing", show_alert=True
             )
