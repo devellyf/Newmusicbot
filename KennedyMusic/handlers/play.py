@@ -8,10 +8,10 @@ import aiohttp
 import converter
 import ffmpeg
 import requests
-from cache.admins import admins as a
-from callsmusic import callsmusic
-from callsmusic.callsmusic import client as USER
-from callsmusic.queues import queues
+from KennedyMusic.cache.admins import admins as a
+from KennedyMusic.callsmusic import callsmusic
+from KennedyMusic.callsmusic.callsmusic import client as USER
+from KennedyMusic.callsmusic.queues import queues
 from config import (
     ASSISTANT_NAME,
     BOT_NAME,
@@ -22,12 +22,12 @@ from config import (
     UPDATES_CHANNEL,
     que,
 )
-from downloaders import youtube
-from helpers.admins import get_administrators
-from helpers.channelmusic import get_chat_id
-from helpers.chattitle import CHAT_TITLE
-from helpers.decorators import authorized_users_only
-from helpers.filters import command, other_filters
+from KennedyMusic.downloaders import youtube
+from KennedyMusic.helpers.admins import get_administrators
+from KennedyMusic.helpers.channelmusic import get_chat_id
+from KennedyMusic.helpers.chattitle import CHAT_TITLE
+from KennedyMusic.helpers.decorators import authorized_users_only
+from KennedyMusic.helpers.filters import command, other_filters
 from helpers.gets import get_url, get_file_name
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
@@ -100,9 +100,9 @@ async def generate_cover(title, thumbnail, ctitle):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/regular.ttf", 52)
-    font2 = ImageFont.truetype("etc/medium.ttf", 76)
-    draw.text((27, 538), f"Playing on {ctitle[:8]}..", (0, 0, 0), font=font)
+    font = ImageFont.truetype("etc/Roboto-Light.ttf", 52)
+    font2 = ImageFont.truetype("etc/Roboto-Medium.ttf", 76)
+    draw.text((27, 538), f"Playing on {ctitle[:13]}..", (0, 0, 0), font=font)
     draw.text((27, 612), f"{title[:18]}...", (0, 0, 0), font=font2)
     img.save("final.png")
     os.remove("temp.png")
@@ -246,7 +246,7 @@ async def music_onoff(_, message):
         await lel.edit(f"✅ **music player turned off** for users in `{message.chat.title}`")
     else:
         await message.reply_text(
-            "**• usage:**\n\n `/music on` & `/music off`"
+            "**• usage:**\n\n `/musicp on` & `/musicp off`"
         )
 
 
@@ -651,6 +651,7 @@ async def play(_, message: Message):
                 "❌ **song name not found, **please provide the name of the song you want to play"
             )
         try:
+            await lel.delete()
             toxxt = "\n"
             j = 0
             user = user_name
@@ -690,12 +691,11 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await message.reply_photo(
+            await _.send_photo(chid,
                 photo=f"{THUMB_IMG}",
                 caption=toxxt,
                 reply_markup=keyboard,
             )
-            await lel.delete()
             
             return
         
