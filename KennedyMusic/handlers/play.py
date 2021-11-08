@@ -844,7 +844,7 @@ async def lol_cb(b, cb):
     )
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))
-    if chat_id in await callsmusic.pytgcalls.active_calls:
+    if await chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -1013,7 +1013,7 @@ async def ytplay(_, message: Message):
     )
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))
-    if chat_id in await callsmusic.pytgcalls.active_calls:
+    if await chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
