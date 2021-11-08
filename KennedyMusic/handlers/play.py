@@ -444,7 +444,7 @@ async def m_cb(b, cb):
 
     elif type_ == "leave":
         hps = "✅ **the music playback has ended**"
-        if await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chet_id)
             except QueueEmpty:
@@ -719,7 +719,7 @@ async def play(_, message: Message):
             message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
             file_path = await convert(youtube.download(url))
-        if await callsmusic.pytgcalls.active_calls(chid):
+        if chid in callsmusic.pytgcalls.active_calls:
             position = await queues.put(chat_id, InputAudioStream(file_path))
             qeue = que.get(chat_id)
             s_name = title
@@ -844,7 +844,7 @@ async def lol_cb(b, cb):
     )
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))
-    if await chat_id in callsmusic.pytgcalls.active_calls:
+    if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -1013,7 +1013,7 @@ async def ytplay(_, message: Message):
     )
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))
-    if await chat_id in callsmusic.pytgcalls.active_calls:
+    if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
