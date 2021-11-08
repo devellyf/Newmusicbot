@@ -1,5 +1,12 @@
+from asyncio import Queue as _queue
 from typing import Dict
 from asyncio import Queue, QueueEmpty as Empty
+
+class Queue(_Queue):
+    _queue: list = []
+
+    def clear(self):
+        self._queue.clear()
 
 
 queues: Dict[int, Queue] = {}
