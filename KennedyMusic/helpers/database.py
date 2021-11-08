@@ -1,5 +1,5 @@
 import datetime
-
+from typing import Dict, List, Union
 import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
@@ -74,7 +74,29 @@ class Database:
         return self.col.find({"ban_status.is_banned": True})
 
 
+async def start_restart_stage(chat_id: int, message_id: int):
+    await restart_stagedb.update_one(
+        {"something": "something"},
+        {
+            "$set": {
+                "chat_id": chat_id,
+                "message_id": message_id,
+            }
+        },
+        upsert=True,
+    )
+
+
+async def clean_restart_stage() -> dict:
+    data = await restart_stagedb.find_one({"something": "something"})
+    if not data:
+        return {}
+    await restart_stagedb.delete_one({"something": "something"})
+    return {"chat_id": data["chat_id"], "message_id": data["message_id"]}
+
+
 # Database
 db = Database(DATABASE_URL, BOT_USERNAME)
 mongo_db_lmao = MongoClient(DATABASE_URL)
 dcmdb = mongo_db_lmao.handlers
+restart_stagedb = mongo_db_lmao.restart_stage
