@@ -196,7 +196,7 @@ async def cbadmin(_, query: CallbackQuery):
  • `/skip` - skip to next song
  • `/end` - mute the music
  • `/userbotjoin` - invite assistant to join the group
- • `/musicplayer (on / off)` - turn on / off the music player in your group
+ • `/musicp (on / off)` - turn on / off the music player in your group
 
 """,
         reply_markup=InlineKeyboardMarkup(
@@ -312,14 +312,11 @@ async def cbhplay(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbplayback"))
 async def cbplayback(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**💭 Invalid syntax, i can't find something.**
+        f"""**❗ couldn't find song you requested**
 
-» Try read on button **Command** to know how to play.""", 
+» **please provide the correct song name or include the artist's name as well**""", 
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                   InlineKeyboardButton("Group Support", url=f"https://t.me/{GROUP_SUPPORT}"),
-                ],
                 [
                    InlineKeyboardButton("Command", callback_data="cbhplay"),
                 ],
