@@ -437,13 +437,11 @@ async def m_cb(b, cb):
             else:
                 await callsmusic.pytgcalls.change_stream(
                     chet_id, 
-                    InputStream(
-                        InputAudioStream(
-                    file_path,
-                ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
+                    InputAudioStream(
+                        file_path,
+                    ),
+                stream_type=StreamType().local_stream,
+            )
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
@@ -730,13 +728,11 @@ async def play(_, message: Message):
         if chid in callsmusic.pytgcalls.active_calls:
             position = await queues.put(
                            chat_id,
-                           InputStream(
-                               InputAudioStream(
-                           file_path,
-                       ),
-                   ),
-                   stream_type=StreamType().local_stream,
-               )
+                           InputAudioStream(
+                               file_path,
+                           ),
+                       stream_type=StreamType().local_stream,
+                   )
             qeue = que.get(chat_id)
             s_name = title
             r_by = message.from_user
@@ -766,7 +762,6 @@ async def play(_, message: Message):
                     InputAudioStream(
                         file_path,
                     ),
-                ),
                 stream_type=StreamType().local_stream,
             )
             except:
@@ -895,7 +890,6 @@ async def lol_cb(b, cb):
                 InputAudioStream(
                     file_path,
                 ),
-            ),
             stream_type=StreamType().local_stream,
         )
             await cb.message.delete()
@@ -1058,7 +1052,6 @@ async def ytplay(_, message: Message):
                 InputAudioStream(
                     file_path,
                 ),
-            ),
             stream_type=StreamType().local_stream,
         )
         except:
