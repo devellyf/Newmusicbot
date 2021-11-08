@@ -19,15 +19,6 @@ from KennedyMusic.config import BROADCAST_AS_COPY, GROUP_SUPPORT, UPDATES_CHANNE
 from KennedyMusic.helpers.database import db, dcmdb
 
 
-async def handle_user_status(bot, cmd):
-    chat_id = cmd.chat.id
-    if not await db.is_user_exist(chat_id):
-        await db.add_user(chat_id)
-        await bot.send_message(
-            LOG_CHANNEL,
-            f"**🔔 bot notification.** \n\n#NEW_USER **start use your bot!** \n\n👤 name: `{cmd.from_user.first_name}` \n📮 user id: `{cmd.from_user.id}` \n🤴 profile: [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})",
-        )
-
     ban_status = await db.get_ban_status(chat_id)
     if ban_status["is_banned"]:
         if (
