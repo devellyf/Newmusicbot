@@ -25,6 +25,7 @@ from KennedyMusic.config import (
     UPDATES_CHANNEL,
     que,
 )
+from KennedyMusic.helpers.database import get_active_chats, is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off
 from KennedyMusic.downloaders import youtube
 from KennedyMusic.helpers.admins import get_administrators
 from KennedyMusic.helpers.channelmusic import get_chat_id
