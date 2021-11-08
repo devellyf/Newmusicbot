@@ -439,11 +439,11 @@ async def m_cb(b, cb):
                     chet_id, 
                     InputStream(
                         InputAudioStream(
-                    file_path,
+                            file_path,
+                    ),
                 ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
+                stream_type=StreamType().local_stream,
+            )
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
@@ -732,11 +732,11 @@ async def play(_, message: Message):
                            chat_id,
                            InputStream(
                                InputAudioStream(
-                           file_path,
+                                   file_path,
+                           ),
                        ),
-                   ),
-                   stream_type=StreamType().local_stream,
-               )
+                       stream_type=StreamType().local_stream,
+                   )
             qeue = que.get(chat_id)
             s_name = title
             r_by = message.from_user
@@ -765,11 +765,11 @@ async def play(_, message: Message):
                     chat_id,
                     InputStream( 
                         InputAudioStream(
-                    file_path,
+                            file_path,
+                    ),
                 ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
+                stream_type=StreamType().local_stream,
+            )
             except:
                 await lel.edit(
                     "😕 **voice chat not found**\n\n» please turn on the voice chat first"
@@ -895,11 +895,11 @@ async def lol_cb(b, cb):
                 chat_id,
                 InputStream( 
                     InputAudioStream(
-                file_path,
+                        file_path,
+                ),
             ),
-        ),
-        stream_type=StreamType().local_stream,
-    )
+            stream_type=StreamType().local_stream,
+        )
             await cb.message.delete()
             await b.send_photo(
                 chat_id,
@@ -1059,11 +1059,11 @@ async def ytplay(_, message: Message):
                 chat_id,
                 InputStream( 
                     InputAudioStream(
-                file_path,
+                        file_path,
+                ),
             ),
-        ),
-        stream_type=StreamType().local_stream,
-    )
+            stream_type=StreamType().local_stream,
+        )
         except:
             await lel.edit(
                 "😕 **voice chat not found**\n\n» please turn on the voice chat first"
