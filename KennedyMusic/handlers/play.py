@@ -390,6 +390,7 @@ async def m_cb(b, cb):
                         InputStream(
                             InputAudioStream(
                                 callsmusic.queues.get(chet_id)["file"],
+                                file_path,
                         ),   
                     ),
                     stream_type=StreamType().local_stream,
@@ -688,6 +689,7 @@ async def play(_, message: Message):
                            InputStream(
                                InputAudioStream(
                                    callsmusic.queues.get(chat_id)["file"],
+                                   file_path,
                            ),
                        ),
                        stream_type=StreamType().local_stream,
@@ -719,6 +721,7 @@ async def play(_, message: Message):
                     InputStream( 
                         InputAudioStream(
                             callsmusic.queues.get(chat_id)["file"],
+                            file_path,
                     ),
                 ),
                 stream_type=StreamType().local_stream,
@@ -849,6 +852,7 @@ async def lol_cb(b, cb):
                     InputStream( 
                         InputAudioStream(
                             callsmusic.queues.get(chat_id)["file"],
+                            file_path,
                     ),
                 ),
                 stream_type=StreamType().local_stream,
@@ -1013,6 +1017,7 @@ async def ytplay(_, message: Message):
                     InputStream( 
                         InputAudioStream(
                             callsmusic.queues.get(chat_id)["file"],
+                            file_path,
                     ),
                 ),
                 stream_type=StreamType().local_stream,
