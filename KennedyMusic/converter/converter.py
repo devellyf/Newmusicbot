@@ -1,9 +1,9 @@
 import asyncio
 from os import path
 
-from KennedyMusic.helpers.errors import FFmpegReturnCodeError
-
-
+class FFmpegReturnCodeError(Exception):
+    pass
+  
 async def convert(file_path: str) -> str:
     out = path.basename(file_path)
     out = out.split(".")
@@ -14,6 +14,7 @@ async def convert(file_path: str) -> str:
 
     if path.isfile(out):
         return out
+
     try:
         proc = await asyncio.create_subprocess_shell(
             cmd=(
