@@ -441,7 +441,6 @@ async def m_cb(b, cb):
                             file_path,
                     ),
                 ),
-                48000,
                 callsmusic.pytgcalls.cache_peer,
                 stream_type=StreamType().local_stream,
             )
@@ -736,7 +735,6 @@ async def play(_, message: Message):
                                    file_path,
                            ),
                        ),
-                       48000,
                        callsmusic.pytgcalls.cache_peer,
                        stream_type=StreamType().local_stream,
                    )
@@ -769,7 +767,6 @@ async def play(_, message: Message):
                             file_path,
                     ),
                 ),
-                48000,
                 callsmusic.pytgcalls.cache_peer,
                 stream_type=StreamType().local_stream,
             )
@@ -899,7 +896,6 @@ async def lol_cb(b, cb):
                         file_path,
                 ),
             ),
-            48000,
             callsmusic.pytgcalls.cache_peer,
             stream_type=StreamType().local_stream,
         )
@@ -1063,7 +1059,6 @@ async def ytplay(_, message: Message):
                         file_path,
                 ),
             ),
-            48000,
             callsmusic.pytgcalls.cache_peer,
             stream_type=StreamType().local_stream,
         )
