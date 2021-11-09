@@ -32,7 +32,6 @@ async def load_start():
             )
         except Exception:
             pass
-        await bot.send_message(LOG_CHANNEL, "✅ KennedyMusic Is Now Online")
-       
+
 run()
 idle()
