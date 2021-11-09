@@ -441,6 +441,8 @@ async def m_cb(b, cb):
                             file_path,
                     ),
                 ),
+                48000,
+                pytgcalls.cache_peer,
                 stream_type=StreamType().local_stream,
             )
                 await cb.message.edit(mmk, reply_markup=keyboard)
@@ -734,6 +736,8 @@ async def play(_, message: Message):
                                    file_path,
                            ),
                        ),
+                       48000,
+                       pytgcalls.cache_peer,
                        stream_type=StreamType().local_stream,
                    )
             qeue = que.get(chat_id)
@@ -765,6 +769,8 @@ async def play(_, message: Message):
                             file_path,
                     ),
                 ),
+                48000,
+                pytgcalls.cache_peer,
                 stream_type=StreamType().local_stream,
             )
             except:
@@ -893,6 +899,8 @@ async def lol_cb(b, cb):
                         file_path,
                 ),
             ),
+            48000,
+            pytgcalls.cache_peer,
             stream_type=StreamType().local_stream,
         )
             await cb.message.delete()
@@ -1055,6 +1063,8 @@ async def ytplay(_, message: Message):
                         file_path,
                 ),
             ),
+            48000,
+            pytgcalls.cache_peer,
             stream_type=StreamType().local_stream,
         )
         except:
