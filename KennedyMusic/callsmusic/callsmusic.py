@@ -26,6 +26,7 @@ async def on_stream_end(client: PyTgCalls, update: Update) -> None:
                     file_path,
                 ),
             ),
+            stream_type=StreamType().local_stream,
         )
 
 run = pytgcalls.start
