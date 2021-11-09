@@ -10,6 +10,7 @@ from KennedyMusic.config import API_HASH, API_ID, SESSION_NAME
 client = Client(SESSION_NAME, API_ID, API_HASH)
 pytgcalls = PyTgCalls(client)
 
+
 @pytgcalls.on_stream_end()
 async def on_stream_end(client: PyTgCalls, update: Update) -> None:
     chat_id = update.chat_id
