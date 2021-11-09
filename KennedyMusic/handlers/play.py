@@ -110,45 +110,6 @@ async def generate_cover(title, thumbnail, ctitle):
     os.remove("temp.png")
     os.remove("background.png")
 
-
-@Client.on_message(
-    command(["playlist", f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited
-)
-async def playlist(client, message):
-
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("🗑️ Close", callback_data="close")
-            ]
-        ]
-    )
-
-    global que
-    if message.chat.id in DISABLED_GROUPS:
-        return
-    queue = que.get(message.chat.id)
-    if not queue:
-        await message.reply_text("❌ **no music is currently playing**")
-    temp = []
-    for t in queue:
-        temp.append(t)
-    now_playing = temp[0][0]
-    by = temp[0][1].mention(style="md")
-    msg = "💡 **now playing** on {}".format(message.chat.title)
-    msg += "\n\n• " + now_playing
-    msg += "\n• Req By " + by
-    temp.pop(0)
-    if temp:
-        msg += "\n\n"
-        msg += "**Queued Song:**"
-        for song in temp:
-            name = song[0]
-            usr = song[1].mention(style="md")
-            msg += f"\n\n• {name}"
-            msg += f"\n• Req by {usr}"
-    await message.reply_text(msg, reply_markup=keyboard)
-
 # ============================= Settings =========================================
 
 def updated_stats(chat, queue, vol=100):
@@ -185,29 +146,6 @@ def r_ply(type_):
         ]
     )
     return mar
-
-
-@Client.on_message(
-    command(["player", f"player@{BOT_USERNAME}"]) & filters.group & ~filters.edited
-)
-@authorized_users_only
-async def settings(client, message):
-    global que
-    playing = None
-    if message.chat.id in callsmusic.pytgcalls.active_calls:
-        playing = True
-    queue = que.get(message.chat.id)
-    stats = updated_stats(message.chat, queue)
-    if stats:
-        if playing:
-            await message.reply(stats, reply_markup=r_ply("pause"))
-
-        else:
-            await message.reply(stats, reply_markup=r_ply("play"))
-    else:
-        await message.reply(
-            "😕 **voice chat not found**\n\n» please turn on the voice chat first"
-        )
 
 
 @Client.on_message(
