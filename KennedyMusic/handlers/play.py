@@ -839,7 +839,7 @@ async def lol_cb(b, cb):
                 + f"🎧 **Request by:** {cb.from_user.mention}",
                 reply_markup=keyboard,
             )
-            if path.exists("final.png")
+            if path.exists("final.png"):
                 os.remove("final.png")
 
 
