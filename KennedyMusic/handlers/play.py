@@ -379,7 +379,7 @@ async def m_cb(b, cb):
                 ),
                 stream_type=StreamType().local_stream,
             )
-                    await cb.message.edit(mmk, reply_markup=keyboard)
+                await cb.message.edit(mmk, reply_markup=keyboard)
  
     elif type_ == "leave":
         hps = "✅ **the music playback has ended**"
