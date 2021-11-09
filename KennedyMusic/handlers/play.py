@@ -259,7 +259,7 @@ async def m_cb(b, cb):
 
     cb.message.reply_markup.inline_keyboard[0][0].callback_data
     if type_ == "pause":
-        if not await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "userbot is not connected to voice chat.", show_alert=True
             )
@@ -272,7 +272,7 @@ async def m_cb(b, cb):
             )
 
     elif type_ == "play":
-        if not await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "userbot is not connected to voice chat.", show_alert=True
             )
@@ -309,7 +309,7 @@ async def m_cb(b, cb):
 
     elif type_ == "resume":
         psn = "▶ music playback has resumed"
-        if not await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "voice chat is not connected or already playing", show_alert=True
             )
@@ -319,7 +319,7 @@ async def m_cb(b, cb):
 
     elif type_ == "puse":
         spn = "⏸ music playback has paused"
-        if not await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "voice chat is not connected or already paused", show_alert=True
             )
@@ -353,7 +353,7 @@ async def m_cb(b, cb):
         mmk = "⏭ you skipped to the next music"
         if qeue:
             qeue.pop(0)
-        if not await callsmusic.pytgcalls.active_calls(chet_id):
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
             )
