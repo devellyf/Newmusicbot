@@ -1,6 +1,5 @@
-from asyncio import Queue as _Queue
+from asyncio import Queue as _Queue, QueueEmpty as Empty
 from typing import Dict
-from asyncio import Queue, QueueEmpty as Empty
 
 class Queue(_Queue):
     _queue: list = []
@@ -9,12 +8,12 @@ class Queue(_Queue):
         self._queue.clear()
 
 
-queues: Dict[int, Queue] = {}
+queues: Dict[int, _Queue] = {}
 
 
 async def put(chat_id: int, **kwargs) -> int:
     if chat_id not in queues:
-        queues[chat_id] = Queue()
+        queues[chat_id] = _Queue()
     await queues[chat_id].put({**kwargs})
     return queues[chat_id].qsize()
 
