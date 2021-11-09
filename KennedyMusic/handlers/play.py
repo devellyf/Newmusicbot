@@ -565,7 +565,7 @@ async def play(_, message: Message):
         )
         message.from_user.first_name
         await generate_cover(title, thumbnail, ctitle)
-        file_path = await convert(None, youtube.download, url)
+        file_path = await convert(download(url))
     else:
         query = ""
         for i in message.command[1:]:
@@ -661,7 +661,7 @@ async def play(_, message: Message):
             )
             message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
-            file_path = await convert(None, youtube.download, url)
+            file_path = await convert(download(url))
         if chid in callsmusic.pytgcalls.active_calls:
             position = await queues.put(
                            chat_id,
@@ -792,7 +792,7 @@ async def lol_cb(b, cb):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await convert(None, youtube.download, url)
+    file_path = await convert(download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
@@ -959,7 +959,7 @@ async def ytplay(_, message: Message):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await convert(None, youtube.download, url)
+    file_path = await convert(download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
