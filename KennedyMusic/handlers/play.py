@@ -383,7 +383,7 @@ async def m_cb(b, cb):
  
     elif type_ == "leave":
         hps = "✅ **the music playback has ended**"
-        for chet_id not in callsmusic.pytgcalls.active_calls:
+        if chet_id not in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chet_id)
             except QueueEmpty:
