@@ -611,7 +611,7 @@ async def play(_, message: Message):
                 "5️⃣",
             ]
             while j < 5:
-                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}...](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]} **[{results[j]['title'][:25]}...](https://youtube.com{results[j]['url_suffix']})**\n"
                 toxxt += f" ├ 💡 **Duration** - `{results[j]['duration']}`\n"
                 toxxt += f" └ ⚡ __Powered by {BOT_NAME}__\n\n"
                 j += 1
@@ -703,7 +703,7 @@ async def play(_, message: Message):
             await lel.delete()
             await message.reply_photo(
                 photo="final.png",
-                caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:35]}...]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
+                caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
                 reply_markup=keyboard,
             )
         else:
@@ -734,7 +734,7 @@ async def play(_, message: Message):
             await lel.delete()
             await message.reply_photo(
                 photo="final.png",
-                caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+                caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
                 + f"🎧 **Request by:** {message.from_user.mention}",
                 reply_markup=keyboard,
             )
@@ -833,7 +833,7 @@ async def lol_cb(b, cb):
                 await b.send_photo(
                     chat_id,
                     photo="final.png",
-                    caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:35]}...]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {cb.from_user.mention}",
+                    caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {cb.from_user.mention}",
                     reply_markup=keyboard,
                 )
         else:
@@ -861,7 +861,7 @@ async def lol_cb(b, cb):
                 await b.send_photo(
                     chat_id,
                     photo="final.png",
-                    caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+                    caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
                     + f"🎧 **Request by:** {cb.from_user.mention}",
                     reply_markup=keyboard,
                 )
@@ -999,7 +999,7 @@ async def ytplay(_, message: Message):
             await lel.delete()
             await message.reply_photo(
                 photo="final.png",
-                caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:35]}...]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
+                caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
                 reply_markup=keyboard,
             )
         else:
@@ -1030,7 +1030,7 @@ async def ytplay(_, message: Message):
             await lel.delete()
             await message.reply_photo(
                 photo="final.png",
-                caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+                caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
                 + f"🎧 **Request by:** {message.from_user.mention}",
                 reply_markup=keyboard,
             )
