@@ -25,7 +25,7 @@ from KennedyMusic.config import (
     UPDATES_CHANNEL,
     que,
 )
-from KennedyMusic.downloaders import youtube
+from KennedyMusic.downloaders.youtube import download
 from KennedyMusic.helpers.admins import get_administrators
 from KennedyMusic.helpers.channelmusic import get_chat_id
 from KennedyMusic.helpers.chattitle import CHAT_TITLE
