@@ -70,6 +70,7 @@ grps = users_db['GROUPS']
 
 
 # Stats Of Your Bot
+"""
 @Client.on_message(command("stats"))
 @sudo_users_only
 async def stats(_, message: Message):
@@ -100,7 +101,7 @@ async def stats(_, message: Message):
         parse_mode="Markdown",
         quote=True,
     )
-
+"""
 
 @Client.on_message(
     filters.private
