@@ -91,7 +91,7 @@ async def skip(_, message: Message):
                 chat_id,
                 InputStream(
                     InputAudioStream(
-                        file,
+                        callsmusic.queues.get(chat_id)["file"],
                     ),
                 ),
             )
