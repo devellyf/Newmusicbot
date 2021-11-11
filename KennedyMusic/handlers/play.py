@@ -374,10 +374,9 @@ async def m_cb(b, cb):
                     chet_id, 
                     InputStream(
                         InputAudioStream(
-                            file_path,
+                            callsmusic.queues.get(chet_id)["file"],
                     ),   
                 ),
-                stream_type=StreamType().local_stream,
             )
                 await cb.message.edit(mmk, reply_markup=keyboard)
  
@@ -989,7 +988,6 @@ async def ytplay(_, message: Message):
                 InputStream( 
                     InputAudioStream(
                         file_path,
-                        callsmusic.queues.get(chat_id)["file"],
                 ),
             ),
             stream_type=StreamType().local_stream,
