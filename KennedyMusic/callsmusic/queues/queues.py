@@ -1,19 +1,13 @@
-from asyncio import Queue as _Queue, QueueEmpty as Empty
 from typing import Dict
-
-class Queue(_Queue):
-    _queue: list = []
-
-    def clear(self):
-        self._queue.clear()
+from asyncio import Queue, QueueEmpty as Empty
 
 
-queues: Dict[int, _Queue] = {}
+queues: Dict[int, Queue] = {}
 
 
 async def put(chat_id: int, **kwargs) -> int:
     if chat_id not in queues:
-        queues[chat_id] = _Queue()
+        queues[chat_id] = Queue()
     await queues[chat_id].put({**kwargs})
     return queues[chat_id].qsize()
 
