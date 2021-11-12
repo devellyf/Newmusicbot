@@ -678,7 +678,7 @@ async def play(_, message: Message):
             message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
             
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     ACTV_CALLS = []
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
@@ -804,7 +804,7 @@ async def lol_cb(b, cb):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     ACTV_CALLS = []
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
@@ -974,7 +974,7 @@ async def ytplay(_, message: Message):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await converter.convert(youtube.download(url))
+    file_path = await convert(youtube.download(url))
     ACTV_CALLS = []
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
