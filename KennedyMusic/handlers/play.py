@@ -5,7 +5,7 @@ from asyncio.queues import QueueEmpty
 
 import aiofiles
 import aiohttp
-from KennedyMusic.converter.converter import convert
+import KennedyMusic.converter.converter
 import ffmpeg
 import requests
 from pytgcalls import StreamType
