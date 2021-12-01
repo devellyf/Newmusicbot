@@ -268,7 +268,7 @@ async def m_cb(b, cb):
                 "userbot is not connected to voice chat.", show_alert=True
             )
         else:
-            await callsmusic.pytgcalls.pause_stream(chet_id)
+            await callsmusic.pytgcalls.pause_stream(chat_id)
             
             await cb.answer("music paused")
             await cb.message.edit(
@@ -284,7 +284,7 @@ async def m_cb(b, cb):
                 "userbot is not connected to voice chat.", show_alert=True
             )
         else:
-            await callsmusic.pytgcalls.resume_stream(chet_id)
+            await callsmusic.pytgcalls.resume_stream(chat_id)
             
             await cb.answer("music resumed")
             await cb.message.edit(
@@ -324,7 +324,7 @@ async def m_cb(b, cb):
                 "voice chat is not connected or already playing", show_alert=True
             )
         else:
-            await callsmusic.pytgcalls.resume_stream(chet_id)
+            await callsmusic.pytgcalls.resume_stream(chat_id)
             await cb.message.edit(psn, reply_markup=keyboard)
 
     elif type_ == "puse":
@@ -337,7 +337,7 @@ async def m_cb(b, cb):
                 "voice chat is not connected or already paused", show_alert=True
             )
         else:
-            await callsmusic.pytgcalls.pause_stream(chet_id)
+            await callsmusic.pytgcalls.pause_stream(chat_id)
             await cb.message.edit(spn, reply_markup=keyboard)
 
     elif type_ == "cls":
@@ -376,8 +376,8 @@ async def m_cb(b, cb):
         else:
             callsmusic.queues.task_done(chat_id)
             
-            if callsmusic.queues.is_empty(chet_id):
-                await callsmusic.pytgcalls.leave_group_call(chet_id)
+            if callsmusic.queues.is_empty(chat_id):
+                await callsmusic.pytgcalls.leave_group_call(chat_id)
                 
                 await cb.message.edit(
                     nmq,
