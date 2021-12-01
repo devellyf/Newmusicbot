@@ -42,6 +42,7 @@ from youtube_search import YoutubeSearch
 
 DISABLED_GROUPS = []
 useer = "NaN"
+ACTV_CALLS = []
 
 
 def cb_admin_check(func: Callable) -> Callable:
@@ -678,11 +679,12 @@ async def play(_, message: Message):
             message.from_user.first_name
             await generate_cover(title, thumbnail, ctitle)
             
-    file_path = await convert(download(url))
-    ACTV_CALLS = []
+            message.from_user.first_name
+            await generate_cover(title, thumbnail, ctitle)
+            file_path = await converter.convert(youtube.download(url))
     for x in callsmusic.pytgcalls.active_calls:
-        ACTV_CALLS(int(x.chid))
-    if chat_id in ACTV_CALLS:
+        ACTV_CALLS.append(int(x.chat_id))
+    if int(chat_id) in ACTV_CALLS:
         position = await queues.put(chat_id, file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -707,15 +709,15 @@ async def play(_, message: Message):
         qeue.append(appendable)
         try:
             await callsmusic.pytgcalls.join_group_call(
-                chat_id,
-                InputStream( 
+                chat_id, 
+                InputStream(
                     InputAudioStream(
                         file_path,
+                    ),
                 ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
-        except:
+                stream_type=StreamType().local_stream,
+            )
+        except Exception as e:
             await lel.edit(
                 "😕 **voice chat not found**\n\n» please turn on the voice chat first"
             )
@@ -723,7 +725,7 @@ async def play(_, message: Message):
         await lel.delete()
         await message.reply_photo(
             photo="final.png",
-            caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+            caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
             + f"🎧 **Request by:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
@@ -804,11 +806,10 @@ async def lol_cb(b, cb):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await convert(download(url))
-    ACTV_CALLS = []
+    file_path = await converter.convert(youtube.download(url))
     for x in callsmusic.pytgcalls.active_calls:
-        ACTV_CALLS(int(x.chat_id))
-    if chat_id in ACTV_CALLS:
+        ACTV_CALLS.append(int(x.chat_id))
+    if int(chat_id) in ACTV_CALLS:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -838,19 +839,19 @@ async def lol_cb(b, cb):
             appendable = [s_name, r_by, loc]
             qeue.append(appendable)
             await callsmusic.pytgcalls.join_group_call(
-                chat_id,
-                InputStream( 
+                chat_id, 
+                InputStream(
                     InputAudioStream(
                         file_path,
                     ),
-            ),
-            stream_type=StreamType().local_stream,
-        )
+                ),
+                stream_type=StreamType().local_stream,
+            )
             await cb.message.delete()
             await b.send_photo(
                 chat_id,
                 photo="final.png",
-                caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+                caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
                 + f"🎧 **Request by:** {cb.from_user.mention}",
                 reply_markup=keyboard,
             )
@@ -974,11 +975,10 @@ async def ytplay(_, message: Message):
         ]
     )
     await generate_cover(title, thumbnail, ctitle)
-    file_path = await convert(download(url))
-    ACTV_CALLS = []
+    file_path = await converter.convert(youtube.download(url))
     for x in callsmusic.pytgcalls.active_calls:
-        ACTV_CALLS(int(x.chat_id))
-    if int(message.chat.id) in ACTV_CALLS:
+        ACTV_CALLS.append(int(x.chat_id))
+    if int(chat_id) in ACTV_CALLS:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -987,8 +987,7 @@ async def ytplay(_, message: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         await lel.delete()
-        await _.send_photo(
-            chid,
+        await message.reply_photo(
             photo="final.png",
             caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** [{title[:35]}...]({url})\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {message.from_user.mention}",
             reply_markup=keyboard,
@@ -1014,14 +1013,13 @@ async def ytplay(_, message: Message):
             )
         except:
             await lel.edit(
-                "❌ **voice chat not found**\n\n» please turn on the voice chat first"
+                "😕 **voice chat not found**\n\n» please turn on the voice chat first"
             )
             return
         await lel.delete()
-        await _.send_photo(
-            chid,
+        await message.reply_photo(
             photo="final.png",
-            caption=f"🏷 **Name:** [{title[:25]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
+            caption=f"🏷 **Name:** [{title[:70]}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
             + f"🎧 **Request by:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
